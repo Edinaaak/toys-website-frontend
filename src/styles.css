@@ -1,1 +1,22 @@
+
+
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.navbar
+{
+  background-color: #ADD8E6;
+}
+
+
+.nav-link
+{
+  font-size: 20px;
+  color: white;
+}
+
+
+#custom-navbar {
+  margin-left: 0;
+  margin-right: 0;
+}
