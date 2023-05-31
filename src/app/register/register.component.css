@@ -1,0 +1,22 @@
+#registerButton
+{
+  width: 120px;
+  background-color: #AFBDD2;
+  border: none;
+}
+
+#registerButton:hover
+{
+  background-color: rgba(128, 128, 128, 0.697);
+}
+
+#selectRole option
+{
+  font-size: 15px;
+}
+
+
+#registerForm
+{
+  margin: 30px;
+}

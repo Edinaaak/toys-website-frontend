@@ -1,1 +1,72 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="d-flex flex-column bd-highlight mb-3">
+  <div class="carousel">
+    <div *ngFor="let imagePath of imagePaths; let i = index" class="carousel-item" [class.active]="i === currentImageIndex">
+      <img [src]="imagePath" class="d-block w-100 carousel-image" alt="Slika" (click)="changeImage(i)">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" (click)="prevImage()" >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" (click)="nextImage()" >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h1 class="display-5 ml-5 text-center">Art Exhibition</h1>
+    <p class="lead text-center mb-0" id="welcome-text">Welcome to the homepage of the art exhibition! This exhibition showcases a collection of artworks that depict the diversity and beauty of the world around us. Through these paintings, artists have conveyed their visions, emotions, and ideas on canvases, creating unique and inspiring pieces of art.</p>
+    <p class="text-center">Enjoy this virtual tour through the art exhibition and allow art to inspire and touch you. Thank you for joining us on this artistic adventure!</p>
+    <p class="lead text-center">
+      <a class="btn btn-primary btn-lg" href="#" role="button" id="moreAbout">Learn More</a>
+    </p>
+  </div>
+</div>
+<div class="container overflow-hidden mb-5">
+  <div class="row gx-5">
+    <div class="col">
+     <div class="p-3 border bg-light text-center">
+       <h2 class="mb-4" style="font-size: 24px; font-weight: bold;">Exhibition of Master Painters</h2>
+       Discover the masterpieces of great painters who defined the world of painting.
+       An exhibition that will enchant you with its beauty and details.
+       Experience the richness of colors, textures, and emotional depth in each piece.
+       Join us and explore the world of art through the eyes of legendary painters.
+     </div>
+    </div>
+    <div class="col">
+      <div class="p-3 border bg-light text-center">
+        <h2 class="mb-4" style="font-size: 24px; font-weight: bold;">Exhibition of Contemporary Sculpture</h2>
+        Experience sculptures that provoke thoughts and animate space.
+        Discover innovative forms, materials, and concepts that will fascinate you.
+        Contemporary sculptures that stand out for their originality and expressiveness.
+        Visit the exhibition and let the sculptures transport you to a world of imagination and inspiration.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class=" text-light text-center py-4" id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p>© 2023 Izložba slika. Sva prava zadržana.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

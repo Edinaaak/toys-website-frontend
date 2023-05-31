@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  loginService : any = LoginService;
+  constructor( loginService: LoginService) {
+    this.loginService = loginService
+   }
 
   ngOnInit(): void {
   }

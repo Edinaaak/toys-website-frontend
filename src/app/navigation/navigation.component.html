@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg " id="custom-navbar">
+<nav class="navbar navbar-expand " id="custom-navbar">
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
@@ -15,16 +15,19 @@
           <a class="nav-link" href="#">Auditorium</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Add a masterpiece</a>
+          <a class="nav-link" href="#">Add art painting</a>
         </li>
       </ul>
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <button type="button" class="btn btn-primary me-2">Button 1</button>
+          <button type="button" class="btn btn-primary me-2" [routerLink]="['register']" *ngIf="!loginService.isLoggedIn()" >Sign up</button>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-secondary">Button 2</button>
+          <button type="button" class="btn btn-primary" [routerLink]="['login']" (click) = "loginService.logout()" *ngIf="loginService.isLoggedIn()" >Logout</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="btn btn-primary" [routerLink]="['login']" *ngIf="!loginService.isLoggedIn()" id="loginButton">Login</button>
         </li>
       </ul>
     </div>
