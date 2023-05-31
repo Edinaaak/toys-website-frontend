@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddArtPtgComponent } from './add-art-ptg/add-art-ptg.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddArtPtgComponent
   ],
   imports: [
    BrowserModule,
@@ -28,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
    RouterModule.forRoot([
     {path:'home', component:HomeComponent },
     {path:'login', component:LoginComponent},
-    {path:'register', component:RegisterComponent}
+    {path:'register', component:RegisterComponent},
+    {path:'add-art-ptg', component:AddArtPtgComponent}
    ])
   ],
   providers: [],
