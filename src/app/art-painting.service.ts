@@ -14,4 +14,30 @@ export class ArtPaintingService {
   {
     return this.http.post<any>(`${this.url}/Masterpiece`, art);
   }
+
+  getArtPtg ()
+  {
+    return this.http.get<any>(`${this.url}/Masterpiece`);
+  }
+
+  getArtPtgById(id:number)
+  {
+    return this.http.get<any>(`${this.url}/Masterpiece/${id}`)
+  }
+
+  addMark(addMarkRequest : any)
+  {
+    return this.http.post<any>(`${this.url}/Masterpiece/add-mark`, addMarkRequest);
+  }
+
+  getArtPtgByFilter(param : any)
+  {
+    const params =
+    {
+      celinaId: param.celinaId,
+      salaId : param.salaId
+    }
+
+    return this.http.get(`${this.url}/Masterpiece`, {params});
+  }
 }

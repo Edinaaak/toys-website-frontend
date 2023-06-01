@@ -1,0 +1,15 @@
+<form [formGroup]="forma">
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">Name</label>
+    <input type="text" id="form2Example1" class="form-control" formControlName="place" />
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example2">Location</label>
+    <input type="text" id="form2Example2" class="form-control" formControlName="location" />
+  </div>
+  <!-- Submit button -->
+  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addPlace()" >Add a place</button>
+</form>

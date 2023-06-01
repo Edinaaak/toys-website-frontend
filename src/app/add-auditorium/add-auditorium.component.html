@@ -1,0 +1,24 @@
+<form [formGroup]="forma">
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example1">Name</label>
+    <input type="text" id="form2Example1" class="form-control" formControlName="name" />
+  </div>
+
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form2Example2">Area</label>
+    <input type="text" id="form2Example2" class="form-control" formControlName="area" />
+  </div>
+
+   <!-- Text input -->
+   <div class="form-outline mb-4">
+    <label  class="form-label">Thematic unit</label>
+    <select class="form-select form-select-lg" name="" id="selectPlace" (change)="choose()"  >
+      <option selected *ngFor="let place of places" value="{{place.id}}">{{place.naziv}}</option>
+    </select>
+  </div>
+
+  <!-- Submit button -->
+  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addAuditorium()" >Add a place</button>
+</form>

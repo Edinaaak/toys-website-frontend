@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+  <title>Document</title>
+</head>
+<body>
+  <section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5" id="card">
+          <div class="card text-black" >
+            <img  [src]="'https://localhost:7036/images/' + artPtgDetails.putanja"
+              class="card-img-top" alt="Apple Computer" />
+            <div class="card-body">
+              <div class="text-center">
+                <h5 class="card-title">{{artPtgDetails.naziv}}</h5>
+                <p class="text-muted mb-4">Created by:Edina Kucevic</p>
+              </div>
+              <div class="text-center">
+                <div class="stars">
+                  <i class="fa-solid fa-star me-3"></i>
+                  <i class="fa-solid fa-star me-3"></i>
+                  <i class="fa-solid fa-star me-3"></i>
+                  <i class="fa-solid fa-star me-3"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <div>
+                <div class="d-flex justify-content-between">
+                  <span>Width:</span><span>{{artPtgDetails.visina}}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Height</span><span>{{artPtgDetails.sirina}}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Thematic unit</span><span>{{artPtgDetails.naziv}}</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between total font-weight-bold">
+                <span>Selected auditorium</span><span>$7,197.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

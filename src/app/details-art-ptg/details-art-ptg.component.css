@@ -1,0 +1,13 @@
+.stars i
+{
+  color: #e6e6e6;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+
+.stars i.active
+{
+  color: orange
+}

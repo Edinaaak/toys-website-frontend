@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   credentials : any = {}
-
-  constructor(private loginService:LoginService, private router:Router) { }
+  user: any = {}
+  constructor(private loginService:LoginService, private router:Router) {
+   }
   forma = new FormGroup(
     {
       email: new FormControl(),
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
       {
         console.log(res);
         this.credentials = res;
-        localStorage.setItem('token',this.credentials.token)
+        localStorage.setItem('token',this.credentials.token);
+        const token = this.credentials.token;
         this.router.navigate(['home'])
       },
       error=>

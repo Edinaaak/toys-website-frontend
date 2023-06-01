@@ -34,19 +34,20 @@
     <div class="form-outline mb-4">
       <label  class="form-label">Thematic unit</label>
       <select class="form-select form-select-lg" name="" id="selectThematicUnit" (change)="choose()"  >
-        <option selected>Portrait</option>
-        <option>Landscape</option>
-        <option>Abstract art</option>
-        <option>Figurative art</option>
-        <option>Historical and mythological scenes</option>
-        <option>Allegories</option>
-        <option>Other</option>
+        <option selected *ngFor="let unit of thUnits" value="{{unit.id}}">{{unit.naziv}}</option>
+      </select>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label  class="form-label">Auditorium</label>
+      <select class="form-select form-select-lg" name="" id="selectAuditorium" (change)="choose()"  >
+        <option *ngFor="let item of auditoriums; let i = index" value="{{item.id}}">{{item.naziv}}</option>
       </select>
     </div>
 
     <!-- Email input -->
     <div class="form-outline mb-4">
-      <input type="file" class="form-control" id="customFile"  formControlName="image"  />
+      <input type="file" class="form-control" id="customFile"  formControlName="image" />
     </div>
 
 

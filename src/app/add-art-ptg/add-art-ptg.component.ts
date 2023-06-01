@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuditoriumService } from '../auditorium.service';
 
 @Component({
   selector: 'app-add-art-ptg',
@@ -9,10 +10,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AddArtPtgComponent implements OnInit {
 
-  constructor(private artService:ArtPaintingService) { }
-  id : number = 0;
+  constructor(private artService:ArtPaintingService, private auditoriumService: AuditoriumService) { }
+  id : any = 0;
+  idAuditorium : any = 0;
   slikarId = 2;
   celinaId = 1;
+  thUnits : any = {};
+  auditoriums : any = {}
+
 
   addForm = new FormGroup(
     {
@@ -21,17 +26,37 @@ export class AddArtPtgComponent implements OnInit {
       height : new FormControl(),
       image : new FormControl(),
       slikarId : new FormControl(2),
-      celinaId : new FormControl(1)
 
 
     }
   )
   ngOnInit(): void {
+    this.auditoriumService.getAllThematicUnit()
+    .subscribe(res =>
+      {
+        this.thUnits = res;
+      },
+      error =>
+      {
+        console.log(error)
+      })
+
+      this.auditoriumService.getAllAuditoriums()
+      .subscribe(res=>
+        {
+          this.auditoriums = res.data;
+          console.log(res.data[0].naziv)
+        },
+        error=>
+        {
+          console.log(error)
+        })
   }
 
   choose()
   {
-    this.id = +(document.getElementById('selectThematicUnit') as HTMLInputElement).value
+    this.id = (document.getElementById('selectThematicUnit') as HTMLInputElement).value
+    this.idAuditorium = (document.getElementById('selectAuditorium') as HTMLInputElement).value
   }
 
   add()
@@ -44,8 +69,9 @@ export class AddArtPtgComponent implements OnInit {
     formData.append('Sirina', this.addForm.get('width')?.value);
     formData.append('Putanja',  putanja || "");
     formData.append('slikarId', this.addForm.get('slikarId')?.value)
-    formData.append('celinaId', this.addForm.get('celinaId')?.value)
-  
+    formData.append('celinaId', this.id)
+    formData.append('salaId', this.idAuditorium)
+
     this.artService.createArtPtg(formData)
     .subscribe(res =>
       {

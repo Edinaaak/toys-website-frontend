@@ -1,0 +1,53 @@
+h5
+{
+  margin-right: 15px;
+}
+
+.mask
+{
+  background-color: #AFBDD2;
+
+}
+#text h5
+{
+  text-decoration: none;
+}
+.text-dark.no-underline {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+
+button
+{
+  border-radius: 1px;
+  border: 0.5px solid gray;
+
+}
+
+#filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#filter-container label {
+  margin-right: 10px;
+}
+
+#filter-container select {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#filter-container select option {
+  font-size: 14px;
+}
+
+#filter-container select:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
