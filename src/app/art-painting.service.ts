@@ -32,12 +32,22 @@ export class ArtPaintingService {
 
   getArtPtgByFilter(param : any)
   {
-    const params =
-    {
-      celinaId: param.celinaId,
-      salaId : param.salaId
+    const params : any = {}
+
+    if (param.celinaId !== null) {
+      params.celinaId = param.celinaId;
     }
 
+    if (param.salaId !== null) {
+      params.salaId = param.salaId;
+    }
+
+
     return this.http.get(`${this.url}/Masterpiece`, {params});
+  }
+
+  getMarkForArtPtg(id:number)
+  {
+    return this.http.get<any>(`${this.url}/Masterpiece/get-mark/${id}`)
   }
 }

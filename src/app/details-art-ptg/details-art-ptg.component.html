@@ -7,25 +7,32 @@
   <title>Document</title>
 </head>
 <body>
+
   <section style="background-color: #eee;">
+
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5" id="card">
+          <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="error?.error">
+            <div style="text-align: center;">
+              {{error?.error}}
+            </div>
+          </div>
           <div class="card text-black" >
-            <img  [src]="'https://localhost:7036/images/' + artPtgDetails.putanja"
+            <img *ngIf="artPtgDetails?.putanja" [src]="'https://localhost:7036/images/' + artPtgDetails?.putanja"
               class="card-img-top" alt="Apple Computer" />
             <div class="card-body">
               <div class="text-center">
                 <h5 class="card-title">{{artPtgDetails.naziv}}</h5>
-                <p class="text-muted mb-4">Created by:Edina Kucevic</p>
+                <p class="text-muted mb-4">Created by: {{artPtgDetails?.user?.ime}}  {{artPtgDetails?.user?.prezime}}</p>
               </div>
               <div class="text-center">
                 <div class="stars">
-                  <i class="fa-solid fa-star me-3"></i>
-                  <i class="fa-solid fa-star me-3"></i>
-                  <i class="fa-solid fa-star me-3"></i>
-                  <i class="fa-solid fa-star me-3"></i>
-                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 1 }"></i>
+                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 2 }"></i>
+                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 3 }"></i>
+                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 4 }"></i>
+                  <i class="fa-solid fa-star" [ngClass]="{ 'active': viewMark >= 5 }"></i>
                 </div>
               </div>
               <div>
@@ -36,11 +43,11 @@
                   <span>Height</span><span>{{artPtgDetails.sirina}}</span>
                 </div>
                 <div class="d-flex justify-content-between">
-                  <span>Thematic unit</span><span>{{artPtgDetails.naziv}}</span>
+                  <span>Thematic unit</span><span>{{artPtgDetails?.tematskaCelina?.naziv}}</span>
                 </div>
               </div>
               <div class="d-flex justify-content-between total font-weight-bold">
-                <span>Selected auditorium</span><span>$7,197.00</span>
+                <span>Selected auditorium</span><span>{{artPtgDetails?.sala?.naziv}}</span>
               </div>
             </div>
           </div>
@@ -48,5 +55,7 @@
       </div>
     </div>
   </section>
+
+<app-footer></app-footer>
 </body>
 </html>

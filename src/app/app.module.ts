@@ -17,6 +17,9 @@ import { DetailsArtPtgComponent } from './details-art-ptg/details-art-ptg.compon
 import { ShortPipe } from './short.pipe';
 import { AddAuditoriumComponent } from './add-auditorium/add-auditorium.component';
 import { AddPlaceComponent } from './add-place/add-place.component';
+import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
+import { JuryListComponent } from './jury-list/jury-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AddPlaceComponent } from './add-place/add-place.component';
     DetailsArtPtgComponent,
     ShortPipe,
     AddAuditoriumComponent,
-    AddPlaceComponent
+    AddPlaceComponent,
+    FooterComponent,
+    ProfileComponent,
+    JuryListComponent
   ],
   imports: [
    BrowserModule,
@@ -48,7 +54,9 @@ import { AddPlaceComponent } from './add-place/add-place.component';
     {path:'gallery', component:GalleryComponent},
     {path:'gallery/:id', component:DetailsArtPtgComponent},
     {path:'add-place', component:AddPlaceComponent},
-    {path:'add-auditorium', component:AddAuditoriumComponent}
+    {path:'add-auditorium', component:AddAuditoriumComponent},
+    {path:'profile', component:ProfileComponent},
+    {path:'jury-list', component:JuryListComponent}
    ]),
 
   ],

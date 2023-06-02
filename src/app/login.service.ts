@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  url = "https://localhost:7036/Auth"
+  url = "https://localhost:7036/api/Auth/"
   constructor(private http : HttpClient) { }
 
   getCredentials(user :any)
   {
-    return this.http.post<any>(`${this.url}/login`, user)
+    return this.http.post<any>(`${this.url}login`, user)
   }
 
   isLoggedIn()

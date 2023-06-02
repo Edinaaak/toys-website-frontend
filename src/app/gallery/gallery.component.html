@@ -13,24 +13,23 @@
       <div class="justify-content-center" id="filter-container" >
         <div class="me-5">
           <label for="sala">Auditorium:</label>
-          <select id="sala"  id="filterByAud">
+          <select id="sala"  id="filterByAud" (change)="filterByAuditorium()">
             <option value="">All Auditoriums</option>
             <option *ngFor="let auditorium of auditoriums" value="{{auditorium.id}}">{{auditorium.naziv}}</option>
           </select>
         </div>
         <div>
           <label for="tematskaCelina">Thematic unit:</label>
-          <select id="tematskaCelina" >
+          <select id="tematskaCelina" (change)="filterByAuditorium()">
             <option value="">All Thematic units </option>
             <option  *ngFor="let unit of thematicUnit" value="{{unit.id}}">{{unit.naziv}}</option>
           </select>
-          <button (click)="filterByAuditorium()">Klik</button>
         </div>
       </div>
       <div style="display: flex; justify-content: center; flex-wrap: wrap;" >
         <div class="col-lg-3 col-md-12 mb-4 me-2" *ngFor="let image of galleryImages">
           <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img  [src]="'https://localhost:7036/images/' + image.putanja"
+            <img *ngIf="image?.putanja" [src]="'https://localhost:7036/images/' + image.putanja"
               class="w-100"  style="width: 300px;height: 300px;"/>
               <div class="mask" style="display:flex;justify-content: space-between;" >
                 <div class="d-flex" id="text" style="width:300px" >
@@ -45,6 +44,8 @@
       </div>
     </div>
   </section>
+
+<app-footer></app-footer>
 </body>
 </html>
 

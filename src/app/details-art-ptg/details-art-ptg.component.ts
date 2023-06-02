@@ -11,27 +11,37 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
   constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute) { }
 
-  artPtgDetails : any = {}
+  artPtgDetails : any ={};
   id : any = 0;
   stars = document.getElementsByClassName('stars');
   rate : number = 0;
+  data : any = {}
+  mark : any = {};
+  error : any = {}
+  viewMark :number = 0;
   ngOnInit(): void {
+
 
     this.routerActive.paramMap.subscribe
     (
       params => this.id = +(params.get('id')?? "0")
     )
 
+    this.fetchMark()
+
     this.artPtg.getArtPtgById(this.id)
     .subscribe(res =>
       {
         this.artPtgDetails = res;
+        console.log(res)
 
       },
       error=>
       {
         console.log(error);
       })
+
+
     }
 
     ngAfterViewInit(): void {
@@ -43,18 +53,19 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
             let addMark =
             {
               ocena: this.rate,
-              userId : 3,
+              userId : 4,
               deloId : this.artPtgDetails.id
             }
             console.log(addMark)
             this.artPtg.addMark(addMark)
             .subscribe(res=>
               {
-                console.log(res, "dodata ocena")
+                this.fetchMark()
               },
               error=>
               {
-                console.log(error)
+                this.error = error.error
+                console.log(error.error)
               })
             console.log(this.rate)
            stars.forEach((star, index2) =>
@@ -66,6 +77,26 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
         });
     }
 
+    fetchMark ()
+    {
+      this.artPtg.getMarkForArtPtg(4)
+      .subscribe(res =>
+        {
+          this.data = res;
+          this.mark = this.data.find((x:any)=> x.deloId == this.id);
+          if(this.mark != null)
+          {
+            this.viewMark = this.mark.ocena;
+            console.log(this.viewMark)
+          }
+        },
+        error =>
+        {
+          console.log(error)
+        })
+
+
+    }
 
 
 

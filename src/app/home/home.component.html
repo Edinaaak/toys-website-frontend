@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <div class="d-flex flex-column bd-highlight mb-3">
+  <div class="d-flex flex-column bd-highlight mb-3" >
   <div class="carousel">
     <div *ngFor="let imagePath of imagePaths; let i = index" class="carousel-item" [class.active]="i === currentImageIndex">
       <img [src]="imagePath" class="d-block w-100 carousel-image" alt="Slika" (click)="changeImage(i)">
@@ -55,18 +55,71 @@
     </div>
   </div>
 </div>
-
-<footer class=" text-light text-center py-4" id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <p>© 2023 Izložba slika. Sva prava zadržana.</p>
-      </div>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" (click)="toggleAccordion('collapseOne')" [attr.aria-expanded]="isAccordionExpanded('collapseOne')" aria-controls="collapseOne" #accordionButton  id="buttonDetail">
+            Artistic Kaleidoscope
+        </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <p>
+                Explore the magical world of art through enchanting and deeply contemplative paintings. Immerse yourself in the visual delight of colors, shapes, and emotions. Each artwork carries a unique story, inviting you to interpret its meaning and connect with the artist's creative vision. From captivating landscapes to abstract expressions of the human experience, these artistic creations will awaken your senses and inspire your imagination.
+            </p>
+            <p>
+                Whether you appreciate classical masterpieces or boundary-pushing contemporary works, our collection offers a diverse range of styles and genres. Discover the power of brushstrokes, the play of light and shadow, and evocative compositions that stir the soul. Allow yourself to be transported to different worlds, to see beauty in unexpected places, and to find inspiration in the depths of artistic expression.
+            </p>
+            <p>
+                Art has the extraordinary ability to transcend linguistic and cultural barriers, to speak directly to the heart and soul. Let these paintings awaken your passion for creativity, ignite your curiosity, and enhance your appreciation for the boundless possibilities of artistic expression. Dive into the world of art and let your imagination soar as you journey through the captivating realm of visual aesthetics.
+            </p>
+        </div>
     </div>
+</div>
+
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingTwo">
+      <button  class="accordion-button" type="button" (click)="toggleAccordion('collapseTwo')" [attr.aria-expanded]="isAccordionExpanded('collapseTwo')" aria-controls="collapseTwo" #accordionButton id="buttonDetail">
+          Artistic Journey Through Time
+      </button>
+  </h2>
+  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <p>
+              Step into the world of art through this unique accordion item. Discover the richness of creativity that spans across centuries. Here, you will find painterly masterpieces, lifelike sculptures, and art installations that evoke wondrous feelings. Each step through this accordion is like a journey through time, exploring different styles, movements, and artistic revolutions that have shaped the world of art. Immerse yourself in inspiration and experience an emotional connection with works that have been passed down through generations.
+          </p>
+          <p>
+              Whether you are a lover of classical art, avant-garde, or contemporary experiments, this accordion item will captivate you. Absorb the colors, shapes, and symbolism of artworks that tell stories, express ideas, and provoke thoughts. Engage in a dialogue with art and allow it to open new perspectives and a deeper understanding of the world that surrounds us.
+          </p>
+          <p>
+              Art is a universal language that connects us and evokes emotions. This accordion item provides an opportunity to connect with exceptional artworks and momentarily experience the world from the perspective of the artists. Surrender yourself to that magical experience and open your heart and mind to the limitless possibilities that art offers.
+          </p>
+      </div>
   </div>
-</footer>
+</div>
 
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingThree">
+      <button  class="accordion-button" type="button" (click)="toggleAccordion('collapseThree')" [attr.aria-expanded]="isAccordionExpanded('collapseThree')" aria-controls="collapseThree" #accordionButton id="buttonDetail">
+          Musical Harmony of the Soul
+      </button>
+  </h2>
+  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <p>
+              This accordion item opens the doors to the world of music and brings heavenly harmony directly to your soul. Through it, discover the enchantment of sounds that fill the space and connect us on a level that surpasses words. The art of sound, rhythm, and melodic lines brings joy, sadness, hope, and all the emotions we experience as we journey through life.
+          </p>
+          <p>
+              Whether you love classical music, jazz, rock, or experimental genres, this accordion item will take you on a journey through different musical worlds. Feel the power of orchestral arrangements, the virtuosity of soloists, the soulfulness of vocals, and the energy of bands. Music is a language without boundaries, transmitted through notes, and merges us into a unique harmony with the world around us.
+          </p>
+          <p>
+              This accordion item is an invitation to surrender to the sounds that float in the air and immerse yourself in the musical universe. Close your eyes, open your ears, and allow the melody to transport you to uncharted horizons. Whether you listen to music as a source of relaxation, inspiration, or entertainment, this accordion item will provide moments of pure magic and make time stand still as you get lost in the sounds.
+          </p>
+      </div>
+  </div>
+</div>
+</div>
 
-
+<app-footer></app-footer>
 </body>
 </html>

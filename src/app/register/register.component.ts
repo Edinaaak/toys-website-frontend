@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       ime: this.registerForm.get('name')?.value,
       prezime: this.registerForm.get('surname')?.value,
       email: this.registerForm.get('email')?.value,
-      userName : this.registerForm.get('name')?.value,
+      userName : this.registerForm.get('email')?.value,
       jmbg: this.registerForm.get('umcn')?.value,
       password: this.registerForm.get('password')?.value,
       nazivMesta: this.registerForm.get('city')?.value,

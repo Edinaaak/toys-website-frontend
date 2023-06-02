@@ -1,0 +1,57 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="overflow-hidden card table-nowrap table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">New customers</h5>
+                    <a href="#!" class="btn btn-light btn-sm">View All</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>City</th>
+                                <th>UMCN</th>
+                                <th>User</th>
+                                <th class="text-end">Accept</th>
+                                <th class="text-end">Decline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle" *ngFor="let jury of juries">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Customer">
+                                        <div>
+                                            <div class="h6 mb-0 lh-1">{{jury.ime}}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{jury.email}}</td>
+                                <td>
+                                    <span class="d-inline-block align-middle">{{jury?.nazivMesta}}</span>
+                                </td>
+                                <td><span>{{jury?.jmbg}}</span></td>
+                                <td>Jury</td>
+                                <td class="text-end">
+                                    <div class="drodown">
+                                        <button (click)="acceptJury(jury.id)">Accept</button>
+                                    </div>
+                                </td>
+                                <td class="text-end">
+                                  <div class="drodown">
+                                      <button (click)="declineJury(jury.id)">Decline</button>
+                                  </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

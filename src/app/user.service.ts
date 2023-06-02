@@ -17,6 +17,11 @@ export class UserService {
 
   createUser(user: any)
   {
-    return this.http.post<any>(`${this.url}/Auth/register`, user);
+    return this.http.post<any>(`${this.url}/api/Auth/register`, user);
+  }
+
+  getJuries()
+  {
+    return this.http.get<any>(`${this.url}/api/User/jury-list`);
   }
 }

@@ -11,15 +11,15 @@ import { AuditoriumService } from '../auditorium.service';
 export class GalleryComponent implements OnInit {
 
   constructor(private artPtgService : ArtPaintingService, private router:Router, private auditoriumService : AuditoriumService) { }
-  galleryImages :any = {}
-  thematicUnit : any = {}
+  galleryImages :any = []
+  thematicUnit : any = []
   idthematicUnit : any = null
-  auditoriums :any = {}
+  auditoriums :any = []
   idAuditorium : any = null
 
   ngOnInit(): void {
     this.artPtgService.getArtPtg()
-    .subscribe(res =>
+    .subscribe((res: any[]) =>
       {
         this.galleryImages = res;
         console.log(this.galleryImages)
@@ -30,7 +30,7 @@ export class GalleryComponent implements OnInit {
       })
 
       this.auditoriumService.getAllThematicUnit()
-      .subscribe(res=>
+      .subscribe((res: any[])=>
         {
           this.thematicUnit = res
         },
@@ -40,7 +40,7 @@ export class GalleryComponent implements OnInit {
         })
 
         this.auditoriumService.getAllAuditoriums()
-        .subscribe(res=>
+        .subscribe((res: any)=>
           {
             this.auditoriums = res.data
           },
@@ -56,20 +56,24 @@ export class GalleryComponent implements OnInit {
 
    filterByAuditorium()
    {
+
       this.idAuditorium = (document.getElementById('filterByAud') as HTMLInputElement).value;
+      this.idthematicUnit = (document.getElementById('tematskaCelina') as HTMLInputElement).value;
       let params = {
-        celinaId : 5,
-        salaId : 17
+        celinaId : this.idthematicUnit,
+        salaId : this.idAuditorium
       }
       this.artPtgService.getArtPtgByFilter(params)
-      .subscribe(res=>
+      .subscribe((res: any)=>
         {
-          console.log(res)
+          this.galleryImages = res;
         },
         error=>
         {
           console.log(error)
         })
    }
+
+
 
 }
