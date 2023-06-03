@@ -53,7 +53,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
             let addMark =
             {
               ocena: this.rate,
-              userId : 4,
+              userId : 3,
               deloId : this.artPtgDetails.id
             }
             console.log(addMark)
@@ -79,7 +79,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
     fetchMark ()
     {
-      this.artPtg.getMarkForArtPtg(4)
+      this.artPtg.getMarkForArtPtg(3)
       .subscribe(res =>
         {
           this.data = res;

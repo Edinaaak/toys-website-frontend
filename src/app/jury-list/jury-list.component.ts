@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,10 +9,10 @@ import { UserService } from '../user.service';
 export class JuryListComponent implements OnInit {
 
   constructor(private userService : UserService) { }
-  juries : any = []
+  juries : any = [];
 
-  ngOnInit(): void {
-
+  getJuryList()
+  {
     this.userService.getJuries()
     .subscribe((res:any)=>
     {
@@ -23,12 +23,42 @@ export class JuryListComponent implements OnInit {
     {
       console.log(error)
     })
+
+  }
+
+  ngOnInit(): void {
+    this.getJuryList();
+   
   }
 
   acceptJury(id:number)
-  {}
+  {
+    this.userService.acceptJury(id)
+    .subscribe( res =>
+      {
+        console.log(res)
+        alert("accepted")
+        this.getJuryList()
+      },
+      error=>
+      {
+        console.log(error)
+      })
+  }
 
   declineJury(id:number)
-  {}
+  {
+    this.userService.declineJury(id)
+    .subscribe(res =>
+      {
+        console.log(res)
+        alert("declined")
+        this.getJuryList()
+      },
+      error=>
+      {
+        console.log(error)
+      })
+  }
 
 }

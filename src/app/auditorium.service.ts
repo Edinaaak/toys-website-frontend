@@ -36,4 +36,24 @@ export class AuditoriumService {
   {
     return this.http.get<any>(`${this.url}/Place`);
   }
+
+  updateAuditorium (id:any, naziv:any)
+  {
+    return this.http.put<any>(`${this.url}/Sala/${id}`, naziv);
+  }
+
+  deleteAuditorium(id:any)
+  {
+    return this.http.delete<any>(`${this.url}/Sala/${id}`);
+  }
+
+  updatePlace (id:any, place:any)
+  {
+    return this.http.put<any>(`${this.url}/Place/${id}`, place);
+  }
+
+  deletePlace(id:any)
+  {
+    return this.http.delete<any>(`${this.url}/Place/${id}`);
+  }
 }

@@ -19,7 +19,7 @@ body{margin-top:20px;
   }
   table th {
       font-weight: 600;
-      background-color: #eeecfd !important;
+      background-color: #AFBDD2 !important;
   }
 
   button
@@ -27,10 +27,12 @@ body{margin-top:20px;
   {
     padding: 7px;
     border-radius: 3px;
-    background-color: #eeecfd ;
+    background-color: #AFBDD2; ;
     border: 0.5px solid gainsboro;
+    right: 0px;
   }
 
   button:hover{
     background-color: rgb(218, 211, 211);
   }
+

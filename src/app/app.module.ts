@@ -20,6 +20,9 @@ import { AddPlaceComponent } from './add-place/add-place.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { JuryListComponent } from './jury-list/jury-list.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { ControlComponent } from './control/control.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { JuryListComponent } from './jury-list/jury-list.component';
     AddPlaceComponent,
     FooterComponent,
     ProfileComponent,
-    JuryListComponent
+    JuryListComponent,
+    UpdateUserComponent,
+    ControlComponent,
+    NotFoundComponent
   ],
   imports: [
    BrowserModule,
@@ -46,7 +52,7 @@ import { JuryListComponent } from './jury-list/jury-list.component';
    HttpClientModule,
    AppRoutingModule,
    RouterModule.forRoot([
-    {path:'home', component:HomeComponent },
+    {path:'', component:HomeComponent },
     {path:'login', component:LoginComponent},
     {path:'register', component:RegisterComponent},
     {path:'add-art-ptg', component:AddArtPtgComponent},
@@ -56,7 +62,10 @@ import { JuryListComponent } from './jury-list/jury-list.component';
     {path:'add-place', component:AddPlaceComponent},
     {path:'add-auditorium', component:AddAuditoriumComponent},
     {path:'profile', component:ProfileComponent},
-    {path:'jury-list', component:JuryListComponent}
+    {path:'jury-list', component:JuryListComponent},
+    {path:'update-user/:id', component:UpdateUserComponent},
+    {path:'control', component:ControlComponent},
+    {path:'not-found', component : NotFoundComponent}
    ]),
 
   ],

@@ -1,0 +1,16 @@
+button
+{
+  background-color: #AFBDD2;
+  border: none;
+
+}
+
+button:hover{
+  background-color: grey;
+}
+
+label
+{
+  font-size: 20px;
+  margin-top: 10px;
+}

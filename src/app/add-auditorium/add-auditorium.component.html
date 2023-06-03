@@ -1,4 +1,5 @@
 <form [formGroup]="forma">
+  <h3 style="text-align: center;">Add an auditorium</h3>
   <!-- Email input -->
   <div class="form-outline mb-4">
     <label class="form-label" for="form2Example1">Name</label>
@@ -13,7 +14,7 @@
 
    <!-- Text input -->
    <div class="form-outline mb-4">
-    <label  class="form-label">Thematic unit</label>
+    <label  class="form-label">Place</label>
     <select class="form-select form-select-lg" name="" id="selectPlace" (change)="choose()"  >
       <option selected *ngFor="let place of places" value="{{place.id}}">{{place.naziv}}</option>
     </select>

@@ -13,7 +13,7 @@ export class AddArtPtgComponent implements OnInit {
   constructor(private artService:ArtPaintingService, private auditoriumService: AuditoriumService) { }
   id : any = 0;
   idAuditorium : any = 0;
-  slikarId = 2;
+  slikarId = 3;
   celinaId = 1;
   thUnits : any = {};
   auditoriums : any = {}
@@ -25,7 +25,7 @@ export class AddArtPtgComponent implements OnInit {
       width: new FormControl(),
       height : new FormControl(),
       image : new FormControl(),
-      slikarId : new FormControl(2),
+      slikarId : new FormControl(3),
 
 
     }
@@ -76,6 +76,7 @@ export class AddArtPtgComponent implements OnInit {
     .subscribe(res =>
       {
         console.log(res, "dodato")
+        alert("Add an art painting")
       },
       error=>
       {

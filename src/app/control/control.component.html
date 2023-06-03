@@ -1,0 +1,174 @@
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" >
+
+
+</head>
+<body>
+<!-- USERI -->
+  <div class="container">
+    <div class="row">
+      <div class="table-responsive">
+        <div class="col-12 mb-3 mb-lg-5" >
+            <div class="overflow-hidden card table-nowrap table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Users</h5>
+                </div>
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th></th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>City</th>
+                                <th>UMCN</th>
+                                <th>User</th>
+                                <th class="text-end">Update</th>
+                                <th class="text-end">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle"  *ngFor="let user of users"  >
+                                <td>
+                                  <i class="fas fa-user"></i>
+
+                                </td>
+                                <td>{{user?.ime}}</td>
+                                <td>
+                                    <span class="d-inline-block align-middle">{{user?.prezime}}</span>
+                                </td>
+                                <td>{{user?.email}}</td>
+                                <td><span>{{user?.nazivMesta}}</span></td>
+                                <td>{{user?.ptt}}</td>
+                                <td class="text-end">
+                                    <div class="drodown">
+                                        <button (click)="updateUser(user?.id)" >Update</button>
+                                    </div>
+                                </td>
+                                <td class="text-end">
+                                  <div class="drodown">
+                                      <button (click)="deleteUser(user?.id)">Delete</button>
+                                  </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <ng-template #emptyList>
+          <h1 style="display: flex; justify-content: center; margin-top: 20%;" >The list is empty</h1>
+        </ng-template>
+    </div>
+</div>
+
+<!-- SALE -->
+<div class="container">
+  <div class="row">
+    <div class="table-responsive">
+      <div class="col-12 mb-3 mb-lg-5" >
+          <div class="overflow-hidden card table-nowrap table-card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">Auditoriums</h5>
+              </div>
+                  <table class="table mb-0">
+                      <thead class="small text-uppercase bg-body text-muted">
+                          <tr>
+                              <th>Auditorium</th>
+                              <th>Name</th>
+                              <th>New Name</th>
+                              <th class="text-end">Update</th>
+                              <th class="text-end">Delete</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="align-middle"  *ngFor="let auditorium of auditoriums"   >
+                              <td>
+                                <i class="fas fa-door-open"></i>
+                              </td>
+                              <td>{{auditorium?.naziv}}</td>
+                              <td><form action="" [formGroup]="forma"><input type="text" placeholder="Enter new name" formControlName="novoIme"></form></td>
+                              <td class="text-end">
+                                  <div class="drodown">
+                                      <button (click)="updateAuditorium(auditorium?.id)">Update</button>
+                                  </div>
+                              </td>
+                              <td class="text-end">
+                                <div class="drodown">
+                                    <button (click)="deleteAuditorium(auditorium?.id)">Delete</button>
+                                </div>
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <ng-template #emptyList>
+        <h1 style="display: flex; justify-content: center; margin-top: 20%;" >The list is empty</h1>
+      </ng-template>
+  </div>
+</div>
+
+
+<!-- MESTA -->
+<div class="container">
+  <div class="row">
+    <div class="table-responsive">
+      <div class="col-12 mb-3 mb-lg-5" >
+          <div class="overflow-hidden card table-nowrap table-card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">Auditoriums</h5>
+              </div>
+                  <table class="table mb-0">
+                      <thead class="small text-uppercase bg-body text-muted">
+                          <tr>
+                            <th></th>
+                              <th>Place</th>
+                              <th>Location</th>
+                              <th>New Place and New Location</th>
+                              <th class="text-end">Update</th>
+                              <th class="text-end">Delete</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="align-middle"   *ngFor="let place of places"   >
+                              <td>
+                                <i class="fas fa-map-marker"></i>
+                              </td>
+                              <td>{{place?.naziv}}</td>
+                              <td>{{place?.lokacija}}</td>
+                              <td><form action="" [formGroup]="formaPlace"><input type="text" placeholder="Enter new name" formControlName="novoMesto" class="me-2">
+                              <input type="text" placeholder="Enter new location" formControlName="novaLokacija"></form></td>
+
+                              <td class="text-end">
+                                  <div class="drodown">
+                                      <button (click)="updatePlace(place?.id)">Update</button>
+                                  </div>
+                              </td>
+                              <td class="text-end">
+                                <div class="drodown">
+                                    <button (click)="deletePlace(place?.id)">Delete</button>
+                                </div>
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <ng-template #emptyList>
+        <h1 style="display: flex; justify-content: center; margin-top: 20%;" >The list is empty</h1>
+      </ng-template>
+  </div>
+</div>
+
+</body>
+</html>

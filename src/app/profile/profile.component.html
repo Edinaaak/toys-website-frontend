@@ -2,7 +2,7 @@
   <div class="jumbotron jumbotron-fluid"></div>
   <div class="container-fluid">
       <div class="row justify-content-center">
-          <div class="col-xl-11">
+          <div class="col-xl-12">
               <div class="widget head-profile has-shadow">
                   <div class="widget-body pb-0">
                       <div class="row d-flex align-items-center">
@@ -13,10 +13,11 @@
                                   <img class="rounded-circle" src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="...">
                               </div>
                               <div class="infos">
-                                  <h2>David Green</h2>
-                                  <div class="location">Sjenica, 36310</div>
-                                  <p>Email:</p>
-                                  
+                                  <h2>{{user?.painter?.ime}} {{user?.painter?.prezime}}</h2>
+                                  <div class="location">{{user?.painter?.nazivMesta}}, {{user?.painter?.ptt}}</div>
+                                  <p><b>Email:</b> {{user?.painter?.email}}</p>
+                                  <button class="me-2" (click)="updateUser(user?.painter?.id)">Update profile</button>
+                                  <button (click)="deleteUser(user?.id)">Delete profile</button>
                               </div>
                           </div>
                           <div class="col-xl-4 col-md-4 d-flex justify-content-lg-end justify-content-md-end justify-content-center">
@@ -26,6 +27,32 @@
                   </div>
               </div>
           </div>
-      </div>
-  </div>
+
+          <h1 style="text-align: center;">My an art paintings</h1>
+          <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+          <div class="container d-flex" style="flex-wrap:wrap;justify-content: space-around; overflow-y:auto; max-height: 650px;" *ngIf="user?.role == 'Slikar'" >
+            <div class="col-md-3 me-1" *ngFor="let item of dela">
+              <div class="card card-background">
+                <a class="nav-link" href="http://localhost:4200/gallery/{{item?.id}}">
+                <div class="image" style="background-image: url(https://localhost:7036/images/{{item?.putanja}}); background-size: cover; background-position: 50% 50%;"></div>
+              </a>
+                <div class="content">
+                  <h5 class="price" style="font-size:xx-large;">{{item?.naziv}}</h5>
+                </div>
+                <div class="footer">
+                  <div class="stats pull-right d-flex">
+                      <i class="fa fa-star mt-1 me-1" style="font-size: 25px;"></i>
+                      <h3>{{item?.ocena}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div *ngIf="dela.length === 0">
+              <h2 style="text-align: center;">Empty list</h2>
+            </div>
+          </div>
+
+
+
 

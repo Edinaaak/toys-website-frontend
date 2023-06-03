@@ -24,4 +24,31 @@ export class UserService {
   {
     return this.http.get<any>(`${this.url}/api/User/jury-list`);
   }
+
+  acceptJury(id:number)
+  {
+    return this.http.put<any>(`${this.url}/api/User/accept/${id}`, null);
+
+  }
+
+  declineJury(id:number)
+  {
+    return this.http.delete<any>(`${this.url}/api/User/decline/${id}`);
+  }
+
+
+  updateUser(id:number, user:any)
+  {
+    return this.http.put<any>(`${this.url}/api/User/${id}`, user);
+  }
+
+  deleteUser(id:number)
+  {
+    return this.http.delete<any>(`${this.url}/api/User/${id}`);
+  }
+
+  getUsers()
+  {
+    return this.http.get<any>(`${this.url}/api/User`);
+  }
 }

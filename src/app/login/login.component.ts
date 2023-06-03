@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   credentials : any = {}
   user: any = {}
+  error : any = {}
   constructor(private loginService:LoginService, private router:Router) {
    }
   forma = new FormGroup(
@@ -43,7 +44,8 @@ export class LoginComponent implements OnInit {
       },
       error=>
       {
-        console.log(error)
+        console.log(error.message)
+        this.error = error.error;
       })
 
   }
