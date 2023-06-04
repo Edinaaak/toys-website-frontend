@@ -20,3 +20,10 @@
 {
   margin: 30px;
 }
+
+.small-alert {
+  padding: 5px;
+  font-size: 12px;
+  margin-left: 20px;
+}
+

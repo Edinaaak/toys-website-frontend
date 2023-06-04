@@ -9,9 +9,13 @@
   <form [formGroup]="addForm">
     <h3 style="text-align: center;">Add an art painting</h3>
      <!-- Text input -->
-     <div class="form-outline mb-4">
+     <div class="form-outline mb-4" >
       <label class="form-label" >Name</label>
       <input type="text" id="form6Example3" class="form-control" formControlName="name" />
+    </div>
+    <div *ngIf="Naziv?.touched && Naziv?.invalid">
+      <p class="alert alert-danger small-alert" *ngIf="Naziv?.errors?.required">The name is required</p>
+      <p class="alert alert-danger small-alert" *ngIf="Naziv?.errors?.minlength">The name must have at least 3 characters</p>
     </div>
 
     <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -22,13 +26,29 @@
           <input type="text" id="form6Example1" class="form-control"  formControlName="width" />
         </div>
       </div>
-      <div class="col">
+         <div class="col">
         <div class="form-outline">
           <label class="form-label" >Height</label>
           <input type="text" id="form6Example2" class="form-control"   formControlName="height" />
         </div>
       </div>
     </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <div *ngIf="Sirina?.touched && Sirina?.invalid">
+          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.required">The width is required</p>
+          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.minlength">The witdh must be a number</p>
+        </div>
+      </div>
+         <div class="col">
+          <div *ngIf="Visina?.touched && Visina?.invalid">
+            <p class="alert alert-danger small-alert " *ngIf="Visina?.errors?.required">The height is required</p>
+            <p class="alert alert-danger small-alert" *ngIf="Visina?.errors?.minlength">The height must be a number</p>
+          </div>
+      </div>
+    </div>
+
 
 
     <!-- Text input -->
@@ -50,10 +70,13 @@
     <div class="form-outline mb-4">
       <input type="file" class="form-control" id="customFile"  formControlName="image" />
     </div>
+    <div *ngIf="Putanja?.touched && Putanja?.invalid">
+      <p class="alert alert-danger small-alert" *ngIf="Putanja?.errors?.required">The image is required</p>
+    </div>
 
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4" (click)="add()">Create</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4" (click)="add()" [disabled]="addForm.invalid">Create</button>
   </form>
 
 </body>

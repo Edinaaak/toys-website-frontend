@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuditoriumService } from '../auditorium.service';
 
 @Component({
@@ -21,15 +21,28 @@ export class AddArtPtgComponent implements OnInit {
 
   addForm = new FormGroup(
     {
-      name: new FormControl(),
-      width: new FormControl(),
-      height : new FormControl(),
-      image : new FormControl(),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      width: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+      height : new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+      image : new FormControl('', Validators.required),
       slikarId : new FormControl(3),
 
 
     }
   )
+  get Naziv(){
+    return this.addForm.get('name')
+  }
+  get Visina(){
+    return this.addForm.get('height');
+  }
+  get Sirina(){
+    return this.addForm.get('width');
+  }
+  get Putanja(){
+    return this.addForm.get('image');
+  }
+
   ngOnInit(): void {
     this.auditoriumService.getAllThematicUnit()
     .subscribe(res =>
@@ -71,6 +84,7 @@ export class AddArtPtgComponent implements OnInit {
     formData.append('slikarId', this.addForm.get('slikarId')?.value)
     formData.append('celinaId', this.id)
     formData.append('salaId', this.idAuditorium)
+
 
     this.artService.createArtPtg(formData)
     .subscribe(res =>

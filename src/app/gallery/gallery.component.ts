@@ -16,19 +16,21 @@ export class GalleryComponent implements OnInit {
   idthematicUnit : any = null
   auditoriums :any = []
   idAuditorium : any = null
+  currPageNumber : any = 1;
 
   ngOnInit(): void {
-    this.artPtgService.getArtPtg()
-    .subscribe((res: any[]) =>
-      {
-        this.galleryImages = res;
-        console.log(this.galleryImages)
-      },
-      error=>
-      {
-        console.log(error)
-      })
+    // this.artPtgService.getArtPtg()
+    // .subscribe((res: any[]) =>
+    //   {
+    //     this.galleryImages = res;
+    //     console.log(this.galleryImages)
+    //   },
+    //   error=>
+    //   {
+    //     console.log(error)
+    //   })
 
+      this.filterByAuditorium();
       this.auditoriumService.getAllThematicUnit()
       .subscribe((res: any[])=>
         {
@@ -61,7 +63,9 @@ export class GalleryComponent implements OnInit {
       this.idthematicUnit = (document.getElementById('tematskaCelina') as HTMLInputElement).value;
       let params = {
         celinaId : this.idthematicUnit,
-        salaId : this.idAuditorium
+        salaId : this.idAuditorium,
+        currPage : this.currPageNumber,
+        pageSize : 3
       }
       this.artPtgService.getArtPtgByFilter(params)
       .subscribe((res: any)=>
@@ -74,6 +78,24 @@ export class GalleryComponent implements OnInit {
         })
    }
 
+   setCurrPage1(id:number)
+   {
+      this.currPageNumber = id;
+      this.filterByAuditorium();
+   }
+
+   setPrevPage()
+   {
+    if(this.currPageNumber >= 2)
+    this.currPageNumber--;
+    this.filterByAuditorium();
+   }
+
+   setNextPage()
+   {
+      this.currPageNumber ++ ;
+      this.filterByAuditorium();
+   }
 
 
 }

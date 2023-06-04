@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuditoriumService } from '../auditorium.service';
 
 @Component({
@@ -11,10 +11,17 @@ export class AddAuditoriumComponent implements OnInit {
 
   constructor(private auditoriumService : AuditoriumService) { }
   forma = new FormGroup({
-    name : new FormControl(),
-    area : new FormControl()
+    name : new FormControl('', Validators.required),
+    area : new FormControl('', [Validators.required,Validators.pattern(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)])
 
   })
+
+  get name(){
+    return this.forma.get('name');
+   }
+   get area(){
+     return this.forma.get('area');
+   }
   places : any = {}
   id : any = {}
   ngOnInit(): void {
@@ -40,6 +47,7 @@ export class AddAuditoriumComponent implements OnInit {
     this.auditoriumService.addAuditorium(request)
     .subscribe((res:any) => {
       console.log('dodato')
+      alert('added auditorium')
     },
     error =>
     {

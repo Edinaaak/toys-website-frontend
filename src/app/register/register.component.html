@@ -18,6 +18,11 @@
                       <input type="text" id="form3Example1c" class="form-control" formControlName="name" />
                     </div>
                   </div>
+                  <div *ngIf="name?.touched && name?.invalid">
+                    <p class="alert alert-danger small-alert " *ngIf="password?.errors?.required">The name is required</p>
+                    <p class="alert alert-danger small-alert" *ngIf="password?.errors?.minLength">The name must contain more than 3 characters</p>
+                    <p class="alert alert-danger small-alert" *ngIf="name?.errors?.neMozeRazmak">The name must not contain spaces!</p>
+                  </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -25,6 +30,10 @@
                       <label class="form-label" for="form3Example3c">Your Surname</label>
                       <input type="text" id="form3Example3c" class="form-control"  formControlName="surname"/>
                     </div>
+                  </div>
+                  <div *ngIf="surname?.touched && surname?.invalid">
+                    <p class="alert alert-danger small-alert" *ngIf="surname?.errors?.required">The surname is required</p>
+                    <p class="alert alert-danger small-alert" *ngIf="surname?.errors?.minLength">The surname must contain more than 3 characters</p>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
@@ -34,6 +43,10 @@
                       <input type="text" id="form3Example3c" class="form-control" formControlName="umcn" />
                     </div>
                   </div>
+                  <div *ngIf="umcn?.touched && umcn?.invalid">
+                    <p class="alert alert-danger small-alert" *ngIf="umcn?.errors?.required">UMCN is required</p>
+                    <p *ngIf="umcn?.errors?.umcnLength">UMCN must have 13 characters</p>
+                 </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -43,19 +56,37 @@
                     </div>
                   </div>
 
+                  <div *ngIf="email?.touched && email?.invalid">
+                    <p class="alert alert-danger small-alert " *ngIf="email?.errors?.required">The email is required</p>
+                    <p class="alert alert-danger small-alert" *ngIf="email?.errors?.email">The email must have @</p>
+                 </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0 me-4">
-                      <label class="form-label" for="form3Example4c">Password</label>
-                      <input type="password" id="form3Example4c" class="form-control" formControlName="password" />
-                    </div>
-                    <div class="form-outline flex-fill mb-0">
-                      <label class="form-label" for="form3Example4d">Repeat your password</label>
-                      <input type="password" id="form3Example4d" class="form-control" formControlName="confirmPassword" />
-                    </div>
+
+                 <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example3c">Password</label>
+                    <input type="text" id="form3Example3c" class="form-control" formControlName="password"/>
                   </div>
+                </div>
+                <div *ngIf="password?.touched && password?.invalid">
+                  <p class="alert alert-danger small-alert" *ngIf="password?.errors?.required">The password is required</p>
+                  <p class="alert alert-danger small-alert" *ngIf="password?.errors?.pattern">The password must contain at least one lowercase and uppercase letter, a symbol, and a number, and be at least characters long.</p>
+               </div>
 
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                  <div class="form-outline flex-fill mb-0">
+                    <label class="form-label" for="form3Example3c">Confirm password</label>
+                    <input type="email" id="form3Example3c" class="form-control" formControlName="confirmPassword"/>
+                  </div>
+                </div>
+
+                <div *ngIf="registerForm.get('confirmPassword')?.errors && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)">
+                  <div *ngIf="registerForm.get('confirmPassword')?.errors?.required" class="alert alert-danger small-alert">Confirm password is required</div>
+                  <div *ngIf="registerForm.get('confirmPassword')?.errors?.pattern" class="alert alert-danger small-alert">Potvrda lozinke nije u ispravnom formatu.</div>
+                  <div *ngIf="registerForm.get('confirmPassword')?.errors?.passwordMismatch" class="alert alert-danger small-alert">Lozinka i potvrda lozinke se ne podudaraju i potvrda lozinke nije u ispravnom formatu.</div>
+                </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
@@ -69,6 +100,15 @@
                     </div>
                   </div>
 
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-2 fa-fw"></i>
+                    <div *ngIf="city?.touched && city?.invalid" class="form-outline flex-fill mb-0 me-4" style="margin-left: 0px;">
+                      <p class="alert alert-danger small-alert" *ngIf="city?.errors?.required">The city is required</p>
+                    </div>
+                    <div *ngIf="zip?.touched && zip?.invalid" class="form-outline flex-fill mb-0" style="margin-left: 0px;">
+                      <p class="alert alert-danger small-alert" *ngIf="zip?.errors?.required">The zip is required</p>
+                    </div>
+                  </div>
 
 
                   <div class="d-flex flex-row align-items-center mb-4">

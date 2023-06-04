@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit  } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
 import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { AuditoriumService } from '../auditorium.service';
 
 @Component({
   selector: 'app-details-art-ptg',
@@ -9,7 +10,7 @@ import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 })
 export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
-  constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute) { }
+  constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService) { }
 
   artPtgDetails : any ={};
   id : any = 0;
@@ -18,7 +19,9 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
   data : any = {}
   mark : any = {};
   error : any = {}
+  auds : any = []
   viewMark :number = 0;
+  idAuditorium : any = 0;
   ngOnInit(): void {
 
 
@@ -41,6 +44,11 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
         console.log(error);
       })
 
+      this.audService.getAllAuditoriums()
+      .subscribe(res=>
+        {
+          this.auds = res.data;
+        })
 
     }
 
@@ -96,6 +104,30 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
         })
 
 
+    }
+
+    addImageToAuditorium(id :number)
+    {
+        let formdata =
+        {
+          id : this.id,
+          idSala : this.idAuditorium
+        }
+        this.artPtg.UpdateSalaForAudiorium(formdata)
+        .subscribe(res=>
+          {
+            console.log(res)
+          },
+          error=>
+          {
+              console.log(error)
+          })
+
+    }
+
+    setIdAuditorium()
+    {
+      this.idAuditorium = +(document.getElementById('auditoriumSelect') as HTMLInputElement).value
     }
 
 

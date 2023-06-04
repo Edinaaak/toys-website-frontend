@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuditoriumService } from '../auditorium.service';
 
 
@@ -12,10 +12,16 @@ export class AddPlaceComponent implements OnInit {
 
   constructor(private auditoriumService : AuditoriumService) { }
   forma = new FormGroup({
-    place : new FormControl(),
-    location : new FormControl()
+    place : new FormControl('', Validators.required),
+    location : new FormControl('', Validators.required)
 
   })
+  get place(){
+    return this.forma.get('place')
+  }
+  get location(){
+    return this.forma.get('location');
+  }
   ngOnInit(): void {
   }
   addPlace()

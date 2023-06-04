@@ -5,12 +5,22 @@
     <label class="form-label" for="form2Example1">Name</label>
     <input type="text" id="form2Example1" class="form-control" formControlName="name" />
   </div>
+  <div *ngIf="name?.touched && name?.invalid">
+    <p class="alert alert-danger " *ngIf="name?.errors?.required">The name is required</p>
+  </div>
+
 
   <!-- Password input -->
   <div class="form-outline mb-4">
     <label class="form-label" for="form2Example2">Area</label>
     <input type="text" id="form2Example2" class="form-control" formControlName="area" />
   </div>
+  <div *ngIf="area?.touched && area?.invalid">
+    <p class="alert alert-danger " *ngIf="area?.errors?.required">The area is required</p>
+     <p class="alert alert-danger " *ngIf="area?.errors?.pattern">The area must be a number</p>
+  </div>
+
+
 
    <!-- Text input -->
    <div class="form-outline mb-4">
@@ -21,5 +31,5 @@
   </div>
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addAuditorium()" >Add a place</button>
+  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addAuditorium()" [disabled]="forma.invalid">Add a place</button>
 </form>

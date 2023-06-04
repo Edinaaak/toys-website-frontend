@@ -120,6 +120,27 @@
 </div>
 </div>
 
+<h1 style="text-align: center;margin-top: 50px;">Top 3 art paintings</h1>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container d-flex" style="flex-wrap:wrap;justify-content: space-around; overflow-y:auto; max-height: 650px;" >
+  <div class="col-md-3 me-1" *ngFor="let item of top3">
+    <div class="card card-background">
+      <a class="nav-link" href="http://localhost:4200/gallery/{{item?.id}}">
+      <div class="image" style="background-image: url(https://localhost:7036/images/{{item?.putanja}}); background-size: cover; background-position: 50% 50%;"></div>
+    </a>
+      <div class="content">
+        <h5 class="price" style="font-size:xx-large;">{{item?.name}}</h5>
+      </div>
+      <div class="footer">
+        <div class="stats pull-right d-flex">
+            <i class="fa fa-star mt-1 me-1" style="font-size: 25px;"></i>
+            <h3>{{item?.price}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-footer></app-footer>
 </body>
 </html>

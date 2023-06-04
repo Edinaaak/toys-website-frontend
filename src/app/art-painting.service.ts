@@ -42,6 +42,8 @@ export class ArtPaintingService {
       params.salaId = param.salaId;
     }
 
+    params.currPage = param.currPage;
+    params.pageSize = param.pageSize;
 
     return this.http.get(`${this.url}/Masterpiece`, {params});
   }
@@ -49,5 +51,16 @@ export class ArtPaintingService {
   getMarkForArtPtg(id:number)
   {
     return this.http.get<any>(`${this.url}/Masterpiece/get-mark/${id}`)
+  }
+
+  getTop3 ()
+  {
+    return this.http.get<any>(`${this.url}/Masterpiece/top-3`);
+
+  }
+
+  UpdateSalaForAudiorium (zahtev : any)
+  {
+    return this.http.put<any>(`${this.url}/Masterpiece/update-masterpiece-auditorium`, zahtev);
   }
 }

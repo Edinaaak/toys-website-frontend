@@ -29,3 +29,9 @@ button:hover
 {
   background-color: gray;
 }
+
+.small-alert {
+  padding: 5px;
+  font-size: 12px;
+}
+

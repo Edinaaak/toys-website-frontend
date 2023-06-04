@@ -16,3 +16,15 @@ span
 {
   font-size: 20px;
 }
+
+form
+{
+  margin:auto;
+  height: auto;
+  width: 40%;
+  background-color: white;
+  padding: 30px;
+  margin-top: 10%;
+  border-radius: 3px;
+  border: 0.5px solid rgba(128, 128, 128, 0.685);
+}

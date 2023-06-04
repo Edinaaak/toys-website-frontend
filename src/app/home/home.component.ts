@@ -1,7 +1,8 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 import { ElementRef } from '@angular/core';
+import { ArtPaintingService } from '../art-painting.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,9 +14,24 @@ import { ElementRef } from '@angular/core';
     ])
   ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   currentImageIndex: number = 0;
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
+  top3 : any = []
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private artPtgService : ArtPaintingService) {}
+  ngOnInit(): void {
+
+
+      this.artPtgService.getTop3()
+      .subscribe(res=>
+        {
+          this.top3 = res
+        },
+        error=>
+        {
+          console.log(error)
+        })
+
+  }
   expandedAccordions: { [key: string]: boolean } = {};
   imagePaths: string[] = [
     'assets/images/slika4.jpg',

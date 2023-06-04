@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidator } from './validacija.validators';
 
 @Component({
   selector: 'app-register',
@@ -12,19 +13,49 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService) { }
   roles :any = {}
   id:number = 0;
+  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   registerForm = new FormGroup(
     {
-      name: new FormControl(),
-      surname : new FormControl(),
-      umcn : new FormControl(),
-      email : new FormControl(),
-      password : new FormControl(),
-      confirmPassword : new FormControl(),
-      city : new FormControl(),
-      zip : new FormControl()
+     name: new FormControl('',[Validators.required, Validators.minLength(3),CustomValidator.neMozeRazmake]),
+      surname : new FormControl('',[Validators.required, Validators.minLength(3)]),
+      umcn : new FormControl('',[Validators.required, CustomValidator.umcnLengthValidator]),
+      email : new FormControl('',[Validators.required, Validators.email]),
+      password : new FormControl('',[Validators.required,  CustomValidator.passwordMatchValidator,
+        Validators.pattern(this.passwordPattern)]),
+      confirmPassword : new FormControl('',[Validators.required, CustomValidator.passwordMatchValidator]),
+      city : new FormControl('',[Validators.required]),
+      zip : new FormControl('',[Validators.required])
 
     }
   )
+  get name(){
+    return this.registerForm.get('name')
+    }
+    get surname(){
+      return this.registerForm.get('surname')
+    }
+    get umcn(){
+      return this.registerForm.get('umcn')
+    }
+    get email(){
+      return this.registerForm.get('email')
+    }
+
+    get confirmPassword()
+    {
+      return this.registerForm.get('confirmPassword')
+    }
+    get password(){
+      return this.registerForm.get('password')
+    }
+
+    get city(){
+      return this.registerForm.get('city')
+    }
+
+    get zip(){
+      return this.registerForm.get('zip');
+    }
   ngOnInit(): void {
     this.userService.getAllRoles()
     .subscribe((res:any) =>

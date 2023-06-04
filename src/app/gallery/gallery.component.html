@@ -44,14 +44,23 @@
       </div>
     </div>
   </section>
+  <div *ngIf="galleryImages.length == 0"><h1 style="text-align: center;">There are no images</h1></div>
 
-  <nav aria-label="..." style="display:flex; justify-content:center;">
-    <ul class="pagination pagination-lg">
-      <li class="page-item active" aria-current="page">
-        <span class="page-link">1</span>
+  <nav aria-label="Page navigation example" style="display:flex; justify-content:center;">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" (click)="setPrevPage()" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
       </li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" (click)="setCurrPage1(1)">1</a></li>
+      <li class="page-item"><a class="page-link" (click)="setCurrPage1(2)">2</a></li>
+      <li class="page-item"><a class="page-link" (click)="setCurrPage1(3)">3</a></li>
+      <li class="page-item">
+        <a class="page-link" (click)="setNextPage()" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
