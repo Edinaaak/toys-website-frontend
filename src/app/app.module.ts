@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { StoreModule } from '@ngrx/store';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -23,6 +24,10 @@ import { JuryListComponent } from './jury-list/jury-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ControlComponent } from './control/control.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { userReducer } from './store/reducers/user.reducer';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login'
 
 @NgModule({
   declarations: [
@@ -43,16 +48,22 @@ import { NotFoundComponent } from './not-found/not-found.component';
     JuryListComponent,
     UpdateUserComponent,
     ControlComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
    BrowserModule,
    FormsModule,
    ReactiveFormsModule,
    HttpClientModule,
+   OAuthModule.forRoot(),
+   SocialLoginModule,
    AppRoutingModule,
+   StoreModule.forRoot({user: userReducer}),
+   OAuthModule.forRoot(),
    RouterModule.forRoot([
-    {path:'', component:HomeComponent },
+    {path:'home', component:HomeComponent },
     {path:'login', component:LoginComponent},
     {path:'register', component:RegisterComponent},
     {path:'add-art-ptg', component:AddArtPtgComponent},
@@ -65,11 +76,24 @@ import { NotFoundComponent } from './not-found/not-found.component';
     {path:'jury-list', component:JuryListComponent},
     {path:'update-user/:id', component:UpdateUserComponent},
     {path:'control', component:ControlComponent},
-    {path:'not-found', component : NotFoundComponent}
+    {path:'forgot-password', component:ForgotPasswordComponent},
+    {path:'change-password/:token', component:ChangePasswordComponent},
+    {path:'not-found', component : NotFoundComponent},
    ]),
-
   ],
-  providers: [],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: true, //keeps the user signed in
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('31089605275-t86ckn25dhji9u0l7elngv1kr8gkkcb8.apps.googleusercontent.com') // your client id
+        }
+      ]
+    }
+  },
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

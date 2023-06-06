@@ -51,4 +51,28 @@ export class UserService {
   {
     return this.http.get<any>(`${this.url}/api/User`);
   }
+
+  forgotPassword (email : any)
+  {
+    const options =
+    {
+      headers : {'Content-Type': 'application/json'}
+    }
+    return this.http.post<any>(`${this.url}/api/Auth/forgot-password`, email, options);
+  }
+  checkToken(token : any)
+  {
+    const options = {
+      headers: { 'Content-Type': 'application/json' }
+    };
+    return this.http.post<any>(`${this.url}/api/Auth/check-token`, token, options)
+  }
+
+  changePassword(request : any)
+  {
+    return this.http.post<any>(`${this.url}/api/Auth/reset-password`, request);
+  }
+
+  
+
 }

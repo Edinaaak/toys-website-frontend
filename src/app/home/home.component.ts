@@ -3,6 +3,9 @@ import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeIn, fadeOut } from 'ng-animate';
 import { ElementRef } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
+import { User } from '../interfaces/User';
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,12 +19,14 @@ import { ArtPaintingService } from '../art-painting.service';
 })
 export class HomeComponent implements OnInit {
   currentImageIndex: number = 0;
-  top3 : any = []
-  constructor(private renderer: Renderer2, private elementRef: ElementRef, private artPtgService : ArtPaintingService) {}
+  top3 : any = [];
+  user: User = {} as User ;
+
+  constructor(private renderer: Renderer2, private elementRef: ElementRef, private artPtgService : ArtPaintingService, private userStore: Store<{user: User}>) {
+    this.userStore.select('user').subscribe((res) =>{ (this.user = res); console.log(this.user)})
+  }
   ngOnInit(): void {
-
-
-      this.artPtgService.getTop3()
+    this.artPtgService.getTop3()
       .subscribe(res=>
         {
           this.top3 = res
@@ -30,6 +35,7 @@ export class HomeComponent implements OnInit {
         {
           console.log(error)
         })
+
 
   }
   expandedAccordions: { [key: string]: boolean } = {};

@@ -1,5 +1,10 @@
 <form [formGroup]="forma">
   <h3 style="text-align: center;">Add an auditorium</h3>
+  <div class="alert alert-success d-flex justify-content-center" *ngIf="added">
+    <div style="text-align: center;">
+      You added successfully the auditorium!
+    </div>
+  </div>
   <!-- Email input -->
   <div class="form-outline mb-4">
     <label class="form-label" for="form2Example1">Name</label>
@@ -25,8 +30,9 @@
    <!-- Text input -->
    <div class="form-outline mb-4">
     <label  class="form-label">Place</label>
-    <select class="form-select form-select-lg" name="" id="selectPlace" (change)="choose()"  >
-      <option selected *ngFor="let place of places" value="{{place.id}}">{{place.naziv}}</option>
+    <select class="form-select form-select-lg" name="" id="selectPlace" (change)="choose()" >
+      <option value="-1" selected>Choose place</option>
+      <option *ngFor="let place of places" value="{{place.id}}">{{place.naziv}}</option>
     </select>
   </div>
 

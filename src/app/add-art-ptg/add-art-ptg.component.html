@@ -8,6 +8,9 @@
 <body>
   <form [formGroup]="addForm">
     <h3 style="text-align: center;">Add an art painting</h3>
+    <div class="text-align-center" *ngIf="added">
+      <div class="alert alert-success small-alert">You added successfully</div>
+    </div>
      <!-- Text input -->
      <div class="form-outline mb-4" >
       <label class="form-label" >Name</label>
@@ -38,13 +41,13 @@
       <div class="col">
         <div *ngIf="Sirina?.touched && Sirina?.invalid">
           <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.required">The width is required</p>
-          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.minlength">The witdh must be a number</p>
+          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.pattern">The witdh must be a number</p>
         </div>
       </div>
          <div class="col">
           <div *ngIf="Visina?.touched && Visina?.invalid">
             <p class="alert alert-danger small-alert " *ngIf="Visina?.errors?.required">The height is required</p>
-            <p class="alert alert-danger small-alert" *ngIf="Visina?.errors?.minlength">The height must be a number</p>
+            <p class="alert alert-danger small-alert" *ngIf="Visina?.errors?.pattern">The witdh must be a number</p>
           </div>
       </div>
     </div>

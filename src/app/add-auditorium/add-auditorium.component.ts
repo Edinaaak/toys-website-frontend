@@ -15,26 +15,28 @@ export class AddAuditoriumComponent implements OnInit {
     area : new FormControl('', [Validators.required,Validators.pattern(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)])
 
   })
-
   get name(){
     return this.forma.get('name');
    }
    get area(){
      return this.forma.get('area');
    }
+  added: boolean = false;
   places : any = {}
-  id : any = {}
+  id : number = -1;
   ngOnInit(): void {
 
     this.auditoriumService.getPlaces()
     .subscribe((res:any) =>
       {
         this.places = res.data;
+        console.log(this.places[0].id, "OVO JE ID")
       },
       error =>
       {
         console.log(error)
       })
+
   }
   addAuditorium()
   {
@@ -44,20 +46,27 @@ export class AddAuditoriumComponent implements OnInit {
        povrsina : this.forma.get('area')?.value,
        mestoId : this.id
     }
+    if(this.id != -1){
     this.auditoriumService.addAuditorium(request)
     .subscribe((res:any) => {
-      console.log('dodato')
-      alert('added auditorium')
+     this.added = true;
     },
     error =>
     {
       console.log(error)
     })
   }
+  else
+  {
+    alert('You did not choose place')
+  }
+}
+
 
   choose()
   {
-    this.id = (document.getElementById('selectPlace') as HTMLInputElement).value
+    this.id = +(document.getElementById('selectPlace') as HTMLInputElement).value
   }
 
 }
+

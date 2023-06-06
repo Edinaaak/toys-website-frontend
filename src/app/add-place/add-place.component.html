@@ -1,23 +1,32 @@
-<form [formGroup]="forma">
-  <h3 style="text-align: center;">Add a place</h3>
-  <!-- Email input -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example1">Name</label>
-    <input type="text" id="form2Example1" class="form-control" formControlName="place" />
-  </div>
-  <div *ngIf="place?.touched && place?.invalid">
-    <p class="alert alert-danger " *ngIf="place?.errors?.required">The name is required</p>
-  </div>
+<div class="place-page">
+  <form [formGroup]="forma">
+    <h3 style="text-align: center;">Add a place</h3>
+    <div class="alert alert-success d-flex align-items-center" role="alert" *ngIf="added">
+      <div style="text-align: center;">
+          You added successfully the place!
+      </div>
+    </div>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Name</label>
+      <input type="text" id="form2Example1" class="form-control" formControlName="place" />
+    </div>
+    <div *ngIf="place?.touched && place?.invalid">
+      <p class="alert alert-danger " *ngIf="place?.errors?.required">The name is required</p>
+    </div>
 
-  <!-- Password input -->
-  <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example2">Location</label>
-    <input type="text" id="form2Example2" class="form-control" formControlName="location" />
-  </div>
-  <div *ngIf="location?.touched && location?.invalid">
-    <p class="alert alert-danger " *ngIf="location?.errors?.required">The location is required</p>
-  </div>
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Location</label>
+      <input type="text" id="form2Example2" class="form-control" formControlName="location" />
+    </div>
+    <div *ngIf="location?.touched && location?.invalid">
+      <p class="alert alert-danger " *ngIf="location?.errors?.required">The location is required</p>
+    </div>
 
-  <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addPlace()" [disabled]="forma.invalid">Add a place</button>
-</form>
+    <!-- Submit button -->
+    <button type="button" class="btn btn-primary btn-block mb-4" (click)="addPlace()" [disabled]="forma.invalid">Add a
+      place</button>
+  </form>
+</div>
+<app-footer></app-footer>

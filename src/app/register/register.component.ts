@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService) { }
   roles :any = {}
-  id:number = 0;
+  id:number = 2;
+  registered : boolean = false;
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   registerForm = new FormGroup(
     {
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
       surname : new FormControl('',[Validators.required, Validators.minLength(3)]),
       umcn : new FormControl('',[Validators.required, CustomValidator.umcnLengthValidator]),
       email : new FormControl('',[Validators.required, Validators.email]),
-      password : new FormControl('',[Validators.required,  CustomValidator.passwordMatchValidator,
+      password : new FormControl('',[Validators.required,
         Validators.pattern(this.passwordPattern)]),
       confirmPassword : new FormControl('',[Validators.required, CustomValidator.passwordMatchValidator]),
       city : new FormControl('',[Validators.required]),
@@ -63,6 +64,7 @@ export class RegisterComponent implements OnInit {
         this.roles = res;
         console.log(this.roles);
 
+
       },
       error=>
       {
@@ -96,6 +98,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(res =>
       {
         console.log(res);
+        this.registered = true
       })
 
   }

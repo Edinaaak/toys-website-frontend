@@ -12,10 +12,10 @@ export class AddPlaceComponent implements OnInit {
 
   constructor(private auditoriumService : AuditoriumService) { }
   forma = new FormGroup({
-    place : new FormControl('', Validators.required),
-    location : new FormControl('', Validators.required)
-
+  place : new FormControl('', Validators.required),
+  location : new FormControl('', Validators.required)
   })
+  added : boolean = false;
   get place(){
     return this.forma.get('place')
   }
@@ -33,7 +33,7 @@ export class AddPlaceComponent implements OnInit {
     }
     this.auditoriumService.addPlace(request)
     .subscribe(res => {
-      console.log('dodato')
+      this.added = true;
     },
     error =>
     {

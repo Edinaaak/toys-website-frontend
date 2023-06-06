@@ -1,22 +1,35 @@
 <div class="container rounded bg-white mt-5 mb-5">
   <div class="row">
       <div class="col-md-3 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"></span><span class="text-black-50">{{user.painter?.email}}</span><span> </span></div>
       </div>
       <div class="col-md-5 border-right">
           <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="text-right">Profile Settings</h4>
+                  <h4 class="text-right">Profile Settings</h4><br>
               </div>
+              <div class="alert alert-success" *ngIf="added">You updated informations successfully!</div>
               <div class="row mt-3">
                 <form action="" [formGroup]="updateForm">
-                <div class="col-md-12"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value="" formControlName="name"></div>
+                <div class="col-md-12"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name"  formControlName="name" ></div>
+                <div *ngIf="name?.touched && name?.invalid">
+                 <p class="alert alert-danger small-alert" *ngIf="name?.errors?.required">The name is required</p>
+                </div>
                   <div class="col-md-12"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname" formControlName="surname"></div>
+                  <div *ngIf="surname?.touched && surname?.invalid">
+                    <p class="alert alert-danger small-alert" *ngIf="surname?.errors?.required">The surname is required</p>
+                   </div>
                   <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="enter city" value="" formControlName = "city"></div>
+                  <div *ngIf="city?.touched && city?.invalid">
+                    <p class="alert alert-danger small-alert" *ngIf="city?.errors?.required">The city is required</p>
+                   </div>
                   <div class="col-md-12"><label class="labels">Ptt</label><input type="text" class="form-control" placeholder="enter ptt" value="" formControlName="ptt"></div>
+                  <div *ngIf="ptt?.touched && ptt?.invalid">
+                    <p class="alert alert-danger small-alert" *ngIf="ptt?.errors?.required">The ptt is required</p>
+                   </div>
                 </form>
               </div>
-              <div class="mt-5 text-left"><button class="btn btn-primary profile-button" type="button" (click)="saveUser()">Save Profile</button></div>
+              <div class="mt-5 text-left"><button class="btn btn-primary profile-button" type="button" (click)="saveUser()" [disabled]="updateForm.invalid">Save Profile</button></div>
           </div>
       </div>
   </div>

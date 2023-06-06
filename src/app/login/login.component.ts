@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/User';
+import { Store } from '@ngrx/store';
+import { login } from '../store/actions/user.actions';
+
 
 @Component({
   selector: 'app-login',
@@ -10,51 +14,63 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  credentials : any = {}
+  credentials: any = {}
   user: any = {}
-  error : any = {}
-  constructor(private loginService:LoginService, private router:Router) {
-   }
-   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  error: boolean = false
+  errorMsg : any = {}
+  userInfo?: any
+
+  constructor(private loginService: LoginService, private router: Router, private store: Store<{user: User}>) {
+
+  }
+
+
+  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   forma = new FormGroup(
     {
-      email: new FormControl('',[Validators.required, Validators.email]),
-      password: new FormControl('',[Validators.required,Validators.pattern(this.passwordPattern)] )
+      email: new FormControl('', [Validators.email]),
+      password: new FormControl('', [Validators.pattern(this.passwordPattern)])
 
     }
   )
-  get email(){
+  get email() {
     return this.forma.get('email')
   }
-  get password(){
+  get password() {
     return this.forma.get('password')
   }
 
   ngOnInit(): void {
   }
 
-  login()
-  {
+  login() {
     let user =
     {
-      email : this.forma.get('email')?.value,
-      password : this.forma.get('password')?.value
+      email: this.forma.get('email')?.value,
+      password: this.forma.get('password')?.value
     }
     this.loginService.getCredentials(user)
-    .subscribe(res =>
-      {
-        console.log(res);
+      .subscribe(res => {
+        this.store.dispatch(login(res))
         this.credentials = res;
-        localStorage.setItem('token',this.credentials.token);
+        // localStorage.setItem('token', this.credentials.token);
+        localStorage.setItem('user', JSON.stringify(res));
         const token = this.credentials.token;
         this.router.navigate([''])
       },
-      error=>
-      {
-        console.log(error.message)
-        this.error = error.error;
-      })
+        (error:any) => {
+          if(error.status == 400)
+          {
+            console.log(error?.error?.msg)
+            this.error = true
+            this.errorMsg = error
+          }
+
+        })
 
   }
+
+
+
 
 }

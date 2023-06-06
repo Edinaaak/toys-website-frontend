@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit  } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
 import { ActivatedRoute, RouterLinkActive } from '@angular/router';
 import { AuditoriumService } from '../auditorium.service';
+import { Store } from '@ngrx/store';
+import { User } from '../interfaces/User';
 
 @Component({
   selector: 'app-details-art-ptg',
@@ -10,7 +12,13 @@ import { AuditoriumService } from '../auditorium.service';
 })
 export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
-  constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService) { }
+  constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService,
+    private userStorage:Store<{user:User}>) {
+      this.userStorage.select('user').subscribe(res =>
+        {
+          this.user = res
+        })
+    }
 
   artPtgDetails : any ={};
   id : any = 0;
@@ -22,6 +30,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
   auds : any = []
   viewMark :number = 0;
   idAuditorium : any = 0;
+  user : User = {} as User
   ngOnInit(): void {
 
 

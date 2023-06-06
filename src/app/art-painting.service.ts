@@ -63,4 +63,6 @@ export class ArtPaintingService {
   {
     return this.http.put<any>(`${this.url}/Masterpiece/update-masterpiece-auditorium`, zahtev);
   }
+
+
 }

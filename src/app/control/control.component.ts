@@ -28,29 +28,46 @@ export class ControlComponent implements OnInit {
       novaLokacija : new FormControl()
     }
   )
-  ngOnInit(): void {
-    this.userService.getUsers()
-    .subscribe(res=>
-      {
-        this.users = res.data
-      })
 
-      this.auditoriumService.getAllAuditoriums()
+  getUsers ()
+  {
+    this.userService.getUsers()
+        .subscribe(res=>
+          {
+            this.users = res.data
+          })
+  }
+
+  getAuds ()
+  {
+        this.auditoriumService.getAllAuditoriums()
       .subscribe(res=>
         {
           this.auditoriums = res.data
         })
+  }
 
-      this.auditoriumService.getPlaces()
-      .subscribe(res=>
-        {
-          this.places = res.data
-        })
+  getPlaces ()
+  {
+    this.auditoriumService.getPlaces()
+    .subscribe(res=>
+      {
+        this.places = res.data
+      })
+  }
+  ngOnInit(): void {
+
+    this.getUsers();
+    this.getAuds();
+    this.getPlaces();
+
+
   }
 
   updateUser(id:any)
   {
     this.router.navigate([`update-user/${id}`]);
+    this.getUsers();
   }
 
   deleteUser(id:any)
@@ -61,9 +78,10 @@ export class ControlComponent implements OnInit {
       this.userService.deleteUser(id)
       .subscribe((res:any)=>
         {
-            localStorage.removeItem('token'); //?
-            this.router.navigate(['']);
+
+
             alert('Your account was deleted')
+            this.getUsers();
 
         },
         (error:any)=>
@@ -88,6 +106,8 @@ export class ControlComponent implements OnInit {
     .subscribe(res=>
       {
         console.log('izmenjenoo')
+        this.getAuds()
+        this.forma.get('novoIme')?.setValue('')
       },
       error=>
       {
@@ -106,8 +126,9 @@ export class ControlComponent implements OnInit {
       .subscribe((res:any)=>
         {
 
-            this.router.navigate(['']);
+            this.getAuds();
             alert('Auditorium was deleted')
+
 
         },
         (error:any)=>
@@ -138,6 +159,9 @@ export class ControlComponent implements OnInit {
     .subscribe(res=>
       {
         console.log(res)
+        this.getPlaces()
+        this.formaPlace.get('novoMesto')?.setValue(''),
+        this.formaPlace.get('novaLokacija')?.setValue('')
       },
       error=>
       {
@@ -156,8 +180,9 @@ export class ControlComponent implements OnInit {
       .subscribe((res:any)=>
         {
 
-            this.router.navigate(['']);
+
             alert('Place was deleted')
+            this.getPlaces()
 
         },
         (error:any)=>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuditoriumService } from '../auditorium.service';
+import { User } from '../interfaces/User';
+import { Store } from '@ngrx/store';
+import { addArtsPainting } from '../store/actions/user.actions';
 
 @Component({
   selector: 'app-add-art-ptg',
@@ -10,22 +13,30 @@ import { AuditoriumService } from '../auditorium.service';
 })
 export class AddArtPtgComponent implements OnInit {
 
-  constructor(private artService:ArtPaintingService, private auditoriumService: AuditoriumService) { }
+  constructor(private artService:ArtPaintingService, private auditoriumService: AuditoriumService, private userStore: Store<{user : User}>)
+  {
+      this.userStore.select('user')
+      .subscribe((res:any) =>
+      {
+        this.user = res
+        console.log(this.user.painter.id)
+      })
+   }
   id : any = 0;
   idAuditorium : any = 0;
   slikarId = 3;
   celinaId = 1;
   thUnits : any = {};
   auditoriums : any = {}
-
+  user : User = {} as User;
+  added :boolean = false;
 
   addForm = new FormGroup(
     {
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       width: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
       height : new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
-      image : new FormControl('', Validators.required),
-      slikarId : new FormControl(3),
+      image : new FormControl('', Validators.required)
 
 
     }
@@ -81,20 +92,25 @@ export class AddArtPtgComponent implements OnInit {
     formData.append('Visina', this.addForm.get('height')?.value);
     formData.append('Sirina', this.addForm.get('width')?.value);
     formData.append('Putanja',  putanja || "");
-    formData.append('slikarId', this.addForm.get('slikarId')?.value)
+    formData.append('slikarId', this.user.painter.id)
     formData.append('celinaId', this.id)
     formData.append('salaId', this.idAuditorium)
 
 
     this.artService.createArtPtg(formData)
-    .subscribe(res =>
+    .subscribe((res:any) =>
       {
         console.log(res, "dodato")
-        alert("Add an art painting")
+        this.userStore.dispatch(addArtsPainting({dela:res}))
+        localStorage.setItem('user', JSON.stringify(this.user))
+        this.added = true;
       },
-      error=>
+      ( error: Response)=>
       {
-        console.log(error)
+        if(error.status == 400)
+        console.log("Invalid validation")
+        else if(error.status == 408)
+        console.log("nasa greska")
       })
   }
 
