@@ -8,7 +8,7 @@ import { logout } from './store/actions/user.actions';
 })
 export class LoginService {
 
-  url = "https://localhost:7036/api/Auth/"
+  url = "http://napredne-001-site1.gtempurl.com/api/Auth/"
   constructor(private http : HttpClient, private store: Store<{user: User}>) { }
 
   getCredentials(user :any)

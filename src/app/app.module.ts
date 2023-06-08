@@ -27,7 +27,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { userReducer } from './store/reducers/user.reducer';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login'
+import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login'
     ControlComponent,
     NotFoundComponent,
     ForgotPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    UnauthorizedComponent
   ],
   imports: [
    BrowserModule,
@@ -63,7 +65,7 @@ import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login'
    StoreModule.forRoot({user: userReducer}),
    OAuthModule.forRoot(),
    RouterModule.forRoot([
-    {path:'home', component:HomeComponent },
+    {path:'', component:HomeComponent },
     {path:'login', component:LoginComponent},
     {path:'register', component:RegisterComponent},
     {path:'add-art-ptg', component:AddArtPtgComponent},
@@ -79,6 +81,7 @@ import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login'
     {path:'forgot-password', component:ForgotPasswordComponent},
     {path:'change-password/:token', component:ChangePasswordComponent},
     {path:'not-found', component : NotFoundComponent},
+    {path:'unauthorized', component: UnauthorizedComponent},
    ]),
   ],
   providers: [{

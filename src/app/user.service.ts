@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = "https://localhost:7036";
+  url = environment.apiUrl2
   constructor(private http:HttpClient) { }
 
 
@@ -73,6 +74,11 @@ export class UserService {
     return this.http.post<any>(`${this.url}/api/Auth/reset-password`, request);
   }
 
-  
+  getById(id:number)
+ {
+  return this.http.get<any>(`${this.url}/api/User/${id}`)
+ }
+
+
 
 }

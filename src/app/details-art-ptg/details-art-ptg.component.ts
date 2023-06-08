@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit  } from '@angular/core';
 import { ArtPaintingService } from '../art-painting.service';
-import { ActivatedRoute, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { AuditoriumService } from '../auditorium.service';
 import { Store } from '@ngrx/store';
 import { User } from '../interfaces/User';
@@ -12,7 +12,7 @@ import { User } from '../interfaces/User';
 })
 export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
-  constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService,
+  constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService, private router : Router,
     private userStorage:Store<{user:User}>) {
       this.userStorage.select('user').subscribe(res =>
         {
@@ -31,6 +31,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
   viewMark :number = 0;
   idAuditorium : any = 0;
   user : User = {} as User
+  alreadyRate : boolean = false
   ngOnInit(): void {
 
 
@@ -38,6 +39,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
     (
       params => this.id = +(params.get('id')?? "0")
     )
+
 
     this.fetchMark()
 
@@ -70,7 +72,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
             let addMark =
             {
               ocena: this.rate,
-              userId : 3,
+              userId : this.user.painter?.id,
               deloId : this.artPtgDetails.id
             }
             console.log(addMark)
@@ -82,7 +84,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
               error=>
               {
                 this.error = error.error
-                console.log(error.error)
+                this.alreadyRate = true
               })
             console.log(this.rate)
            stars.forEach((star, index2) =>
@@ -96,7 +98,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
     fetchMark ()
     {
-      this.artPtg.getMarkForArtPtg(3)
+      this.artPtg.getMarkForArtPtg(this.user.painter?.id)
       .subscribe(res =>
         {
           this.data = res;
@@ -104,7 +106,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
           if(this.mark != null)
           {
             this.viewMark = this.mark.ocena;
-            console.log(this.viewMark)
+            console.log(this.viewMark, '0CENAA')
           }
         },
         error =>
@@ -139,6 +141,27 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
       this.idAuditorium = +(document.getElementById('auditoriumSelect') as HTMLInputElement).value
     }
 
+
+    deleteArt()
+    {
+      var result = confirm('Do you want to delete this art painting?')
+      if(result){
+      this.artPtg.deleteArtPtg(this.id)
+      .subscribe(res =>
+        {
+          console.log(this.error)
+          this.router.navigate(['gallery']);
+
+        },
+        error =>
+        {
+            console.log(error)
+        })}
+        else
+        {
+          alert('You gave up')
+        }
+    }
 
 
 

@@ -64,5 +64,9 @@ export class ArtPaintingService {
     return this.http.put<any>(`${this.url}/Masterpiece/update-masterpiece-auditorium`, zahtev);
   }
 
+  deleteArtPtg(id : number)
+  {
+    return this.http.delete<any>(`${this.url}/Masterpiece/${id}`)
+  }
 
 }

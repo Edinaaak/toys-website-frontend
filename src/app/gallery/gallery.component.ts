@@ -65,12 +65,13 @@ export class GalleryComponent implements OnInit {
         celinaId : this.idthematicUnit,
         salaId : this.idAuditorium,
         currPage : this.currPageNumber,
-        pageSize : 3
+        pageSize : 6
       }
       this.artPtgService.getArtPtgByFilter(params)
       .subscribe((res: any)=>
         {
           this.galleryImages = res;
+
         },
         error=>
         {

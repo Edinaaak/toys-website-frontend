@@ -28,7 +28,7 @@ export class JuryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getJuryList();
-   
+
   }
 
   acceptJury(id:number)

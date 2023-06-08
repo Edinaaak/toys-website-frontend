@@ -57,15 +57,15 @@
     <!-- Text input -->
     <div class="form-outline mb-4">
       <label  class="form-label">Thematic unit</label>
-      <select class="form-select form-select-lg" name="" id="selectThematicUnit" (change)="choose()"  >
-        <option selected *ngFor="let unit of thUnits" value="{{unit.id}}">{{unit.naziv}}</option>
+      <select class="form-select form-select-lg" name="" id="selectThematicUnit" (change)="choose()">
+        <option *ngFor="let unit of thUnits" value="{{unit.id}}">{{unit.naziv}}</option>
       </select>
     </div>
 
     <div class="form-outline mb-4">
       <label  class="form-label">Auditorium</label>
       <select class="form-select form-select-lg" name="" id="selectAuditorium" (change)="choose()"  >
-        <option *ngFor="let item of auditoriums; let i = index" value="{{item.id}}">{{item.naziv}}</option>
+        <option *ngFor="let item of auditoriums; let i = index" value="{{item.id}}" >{{item.naziv}}</option>
       </select>
     </div>
 

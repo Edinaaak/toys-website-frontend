@@ -61,9 +61,16 @@ export class LoginComponent implements OnInit {
         (error:any) => {
           if(error.status == 400)
           {
-            console.log(error?.error?.msg)
-            this.error = true
-            this.errorMsg = error
+            console.log(error)
+             this.error = true;
+              this.errorMsg = error?.error?.msg;
+
+          }
+          else
+          {
+            this.error= true;
+            console.log(error.error.msg)
+            this.errorMsg = error?.error?.error
           }
 
         })

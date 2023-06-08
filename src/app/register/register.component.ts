@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
   constructor(private userService: UserService) { }
   roles :any = {}
   id:number = 2;
+  response : any = {}
+  error : boolean = false;
   registered : boolean = false;
   passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   registerForm = new FormGroup(
@@ -98,9 +100,16 @@ export class RegisterComponent implements OnInit {
     .subscribe(res =>
       {
         console.log(res);
-        this.registered = true
-      })
+        this.response = res;
 
-  }
+      },
+      error =>
+      {
+
+        this.response = error.error;
+        this.error = true;
+      }
+
+    )}
 
 }

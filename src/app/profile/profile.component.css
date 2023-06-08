@@ -1,6 +1,6 @@
 .db-social .jumbotron {
   margin: 0;
-  background: url(https://artistsspace.org/media/pages/exhibitions/radical-localism-2/631263313-1623172990/as_mexicali_021.jpg);
+  background: url(https://developer-blogs.nvidia.com/wp-content/uploads/2022/01/AdobeStock_327477069.jpeg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -31,30 +31,7 @@
 .has-shadow {
   box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
 }
-.db-social .head-profile:before {
-  content: "";
-  background: rgba(255,255,255,.6);
-  height: 20px;
-  width: 90%;
-  position: absolute;
-  top: -20px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  border-radius: 4px 4px 0 0;
-}
-.db-social .head-profile:after {
-  content: "";
-  background: rgba(255,255,255,.3);
-  height: 20px;
-  width: 80%;
-  position: absolute;
-  top: -40px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  border-radius: 4px 4px 0 0;
-}
+
 .db-social .widget-body {
   padding: 1rem 1.4rem;
 }
@@ -182,7 +159,7 @@
   transform-style: preserve-3d;
 }
 .card .image img {
-  width: 100%;
+  width: 90%;
 }
 
 .card-background .filter {
@@ -259,4 +236,60 @@ button
 button:hover
 {
   background-color: grey;
+}
+
+
+
+.col-md-3 {
+  flex: 0 0 calc(33.33% - 10px);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 992px) {
+  .col-md-3 {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .col-md-3 {
+    flex: 0 0 90%;
+  }
+}
+
+.card {
+  width: 80%;
+}
+
+.card-background {
+  position: relative;
+}
+
+.image {
+  width: 80%;
+  height: 0;
+  padding-bottom: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.content {
+  padding: 10px;
+}
+
+.price {
+  font-size: xx-large;
+}
+
+.footer {
+  padding: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fa-star {
+  font-size: 25px;
 }

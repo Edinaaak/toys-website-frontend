@@ -55,10 +55,13 @@ export class AddArtPtgComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
     this.auditoriumService.getAllThematicUnit()
     .subscribe(res =>
       {
         this.thUnits = res;
+        this.id = this.thUnits[0].id
       },
       error =>
       {
@@ -69,6 +72,7 @@ export class AddArtPtgComponent implements OnInit {
       .subscribe(res=>
         {
           this.auditoriums = res.data;
+          this.idAuditorium = this.auditoriums[0].id
           console.log(res.data[0].naziv)
         },
         error=>

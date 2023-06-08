@@ -8,7 +8,7 @@
 <body>
   <form [formGroup]="forma">
     <div class="alert alert-dark" role="alert" *ngIf="error">
-     {{errorMsg?.error?.msg}}
+     {{errorMsg}}
     </div>
     <!-- Email input -->
     <div class="form-outline mb-4">
@@ -27,13 +27,13 @@
     </div>
 
     <div *ngIf="password?.touched && password?.invalid">
-      <p class="alert alert-danger " *ngIf="password?.errors?.pattern">The password must contain at least one lowercase and uppercase letter, a symbol, and a number, and be at least 8 characters long.</p>
+
     </div>
 
     <!-- 2 column grid layout for inline styling -->
     <div class="row mb-4">
       <div class="col d-flex justify-content-start">
-        <a href="http://localhost:4200/forgot-password">Forgot password?</a>
+        <a href="http://elmaaa-001-site1.ftempurl.com/forgot-password">Forgot password?</a>
       </div>
     </div>
     <!-- Submit button -->
@@ -41,9 +41,8 @@
 
     <!-- Register buttons -->
     <div class="text-center">
-      <p>Not a member? <a href="http://localhost:4200/register">Register</a></p>
+      <p>Not a member? <a href="http://elmaaa-001-site1.ftempurl.com/register">Register</a></p>
     </div>
-    <div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div>
 
   </form>
 </body>

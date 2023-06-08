@@ -12,13 +12,13 @@
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6 col-xl-5" id="card">
-          <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="error?.error">
+          <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="alreadyRate">
             <div style="text-align: center;">
-              {{error?.error}}
+              {{error?.msg}}
             </div>
           </div>
           <div class="card text-black" >
-            <img *ngIf="artPtgDetails?.putanja" [src]="'https://localhost:7036/images/' + artPtgDetails?.putanja"
+            <img *ngIf="artPtgDetails?.putanja" [src]="'http://napredne-001-site1.gtempurl.com/images/' + artPtgDetails?.putanja"
               class="card-img-top" alt="Apple Computer" />
             <div class="card-body">
               <div class="text-center">
@@ -51,6 +51,9 @@
             </div>
           </div>
         </div>
+       <div class="d-flex justify-content-center mt-3" *ngIf="user?.painter?.ime == artPtgDetails?.user?.ime">
+         <button type="button" name="" id="" class="btn" (click)="deleteArt()">Delete</button>
+       </div>
       </div>
     </div>
   </section>

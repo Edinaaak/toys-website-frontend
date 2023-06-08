@@ -12,9 +12,12 @@
                   <div class="alert alert-success small-alert">You registered successfully!</div>
                 </div>
 
+                <div *ngIf="error" text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4>
+                  <div class="alert alert-danger small-alert">{{response}}</div>
+                </div>
                 <form class="mx-1 mx-md-4" [formGroup]="registerForm">
 
-                  <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="d-flex flex-row align-items-center mb-4" >
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example1c">Your Name</label>
@@ -69,7 +72,7 @@
                   <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">
                     <label class="form-label" for="form3Example3c">Password</label>
-                    <input type="text" id="form3Example3c" class="form-control" formControlName="password"/>
+                    <input type="password" id="form3Example3c" class="form-control" formControlName="password"/>
                   </div>
                 </div>
                 <div *ngIf="password?.touched && password?.invalid">

@@ -13,9 +13,9 @@ import { updateUser } from '../store/actions/user.actions';
 })
 export class UpdateUserComponent implements OnInit {
 
-  user : User = {} as User;
+  user : any = {}
   constructor(private userService:UserService, private routerActive : ActivatedRoute, private userStorage : Store<{user:User}>) {
-    this.userStorage.select('user').subscribe((res) => this.user = res)
+
    }
   id : number = 0;
   added : boolean = false;
@@ -27,14 +27,22 @@ export class UpdateUserComponent implements OnInit {
   })
   ngOnInit(): void {
 
-    this.updateForm.get('name')?.setValue(this.user.painter.ime);
-    this.updateForm.get('surname')?.setValue(this.user.painter.prezime);
-    this.updateForm.get('city')?.setValue(this.user.painter.nazivMesta);
-    this.updateForm.get('ptt')?.setValue(this.user.painter.ptt);
     this.routerActive.paramMap.subscribe
     (
       params => this.id = +(params.get('id')?? "0")
     )
+    this.userService.getById(this.id)
+    .subscribe(res=>
+      {
+        this.user = res
+        console.log(this.user)
+        this.updateForm.get('name')?.setValue(this.user.ime);
+        this.updateForm.get('surname')?.setValue(this.user.prezime);
+        this.updateForm.get('city')?.setValue(this.user.nazivMesta);
+        this.updateForm.get('ptt')?.setValue(this.user.ptt);
+      })
+
+
   }
 
   get name()

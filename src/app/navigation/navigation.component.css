@@ -1,0 +1,56 @@
+/* Stilovi za responzivan izgled */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin-bottom: 1rem;
+  }
+}
+/* Stilovi za prikaz dugmeta na manjim ekranima */
+@media (min-width: 768px) {
+  .navbar-toggler {
+    display: none;
+  }
+}
+
+/* Stilovi za responzivan izgled */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    display: block;
+    flex-basis: 100%;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+
+  .nav-item {
+    margin-bottom: 1rem;
+  }
+
+  .navbar-expand .navbar-collapse {
+    display: block !important;
+    flex-basis: auto;
+}
+}
+
+/* Stilovi za prikaz dugmeta na manjim ekranima */
+@media (min-width: 768px) {
+  .navbar-toggler {
+    display: none;
+  }
+}

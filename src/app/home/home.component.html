@@ -29,7 +29,7 @@
     <p class="lead text-center mb-0" id="welcome-text">Welcome to the homepage of the art exhibition! This exhibition showcases a collection of artworks that depict the diversity and beauty of the world around us. Through these paintings, artists have conveyed their visions, emotions, and ideas on canvases, creating unique and inspiring pieces of art.</p>
     <p class="text-center">Enjoy this virtual tour through the art exhibition and allow art to inspire and touch you. Thank you for joining us on this artistic adventure!</p>
     <p class="lead text-center">
-      <a class="btn btn-primary btn-lg"  href="http://localhost:4200/about"  role="button" id="moreAbout">Learn More</a>
+      <a class="btn btn-primary btn-lg"  href="http://elmaaa-001-site1.ftempurl.com/about"  role="button" id="moreAbout">Learn More</a>
     </p>
   </div>
 </div>
@@ -120,13 +120,13 @@
 </div>
 </div>
 
-<h1 style="text-align: center;margin-top: 50px;">Top 3 art paintings</h1>
+<h1 style="text-align: center;margin-top: 50px;" *ngIf="top3.length > 0">Top 3 art paintings</h1>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container d-flex" style="flex-wrap:wrap;justify-content: space-around; overflow-y:auto; max-height: 650px;" >
   <div class="col-md-3 me-1" *ngFor="let item of top3">
     <div class="card card-background">
-      <a class="nav-link" href="http://localhost:4200/gallery/{{item?.id}}">
-      <div class="image" style="background-image: url(https://localhost:7036/images/{{item?.putanja}}); background-size: cover; background-position: 50% 50%;"></div>
+      <a class="nav-link" href="http://elmaaa-001-site1.ftempurl.com/gallery/{{item?.id}}">
+      <div class="image" style="background-image: url(http://napredne-001-site1.gtempurl.com/images/{{item?.putanja}}); background-size: cover; background-position: 50% 50%;"></div>
     </a>
       <div class="content">
         <h5 class="price" style="font-size:xx-large;">{{item?.name}}</h5>

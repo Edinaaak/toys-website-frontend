@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-change-password',
@@ -15,11 +15,17 @@ export class ChangePasswordComponent implements OnInit {
   ifUser : boolean = false
   error : any = ""
   changed : boolean = false;
+  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   forma = new FormGroup(
     {
-      password : new FormControl()
+      password :new FormControl('', [Validators.required,Validators.pattern(this.passwordPattern)])
     }
   )
+
+  get password ()
+  {
+    return this.forma.get('password')
+  }
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(
