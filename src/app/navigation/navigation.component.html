@@ -1,44 +1,4 @@
 
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
-</head>
-<nav class="navbar navbar-expand " id="custom-navbar">
-  <div class="container">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['home']">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['about']">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['gallery']">Gallery</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['add-art-ptg']" *ngIf="user.role == 'Slikar'">Add art painting</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['add-place']" *ngIf="user.role == 'Admin'">Add place</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['add-auditorium']" *ngIf="user.role == 'Admin'">Add auditorium</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['profile']" *ngIf="user.token != ''">My profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['jury-list']" *ngIf="user.role == 'Admin'">Jury list</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['control']" *ngIf="user.role == 'Admin'">Control</a>
-        </li>
-      </ul>
 
 
 <body>
