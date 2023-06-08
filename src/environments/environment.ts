@@ -4,8 +4,13 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   apiUrl: 'http://napredne-001-site1.gtempurl.com/api',
   apiUrl2: 'http://napredne-001-site1.gtempurl.com'
+=======
+  //apiUrl: 'https://localhost:7036/api'
+  apiUrl:'http://noriding-001-site1.ftempurl.com/api'
+>>>>>>> 415f3475da3c2288eea58ab9d16474496c72b7a1
 };
 
 /*
