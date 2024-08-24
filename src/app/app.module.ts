@@ -24,11 +24,14 @@ import { JuryListComponent } from './jury-list/jury-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ControlComponent } from './control/control.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { userReducer } from './store/reducers/user.reducer';
+import { productReducer, userReducer } from './store/reducers/user.reducer';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { BlogsComponent } from './blogs/blogs.component';
+import { BasketComponent } from './basket/basket.component';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
     NotFoundComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    BlogsComponent,
+    BasketComponent
   ],
   imports: [
    BrowserModule,
@@ -62,7 +67,10 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
    OAuthModule.forRoot(),
    SocialLoginModule,
    AppRoutingModule,
-   StoreModule.forRoot({user: userReducer}),
+   StoreModule.forRoot({
+    user: userReducer,
+    products: productReducer,
+  }),
    OAuthModule.forRoot(),
    RouterModule.forRoot([
     {path:'', component:HomeComponent },
@@ -82,6 +90,9 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component'
     {path:'change-password/:token', component:ChangePasswordComponent},
     {path:'not-found', component : NotFoundComponent},
     {path:'unauthorized', component: UnauthorizedComponent},
+    {path:'gallery/:kind/:title/:id', component:GalleryComponent},
+    {path:'blogs', component: BlogsComponent},
+    {path:'cart', component: BasketComponent}
    ]),
   ],
   providers: [{
