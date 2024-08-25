@@ -1,0 +1,47 @@
+<div class="cart-dropdown" *ngIf="isCartOpen" >
+    <div class="cart-content">
+      <div class="cart-header">
+        <div>
+            <h4>Your cart</h4>
+        </div>
+        <button class="close-btn" (click)="closeCart()">×</button>
+      </div>
+      <div class="card-product">
+        <div>
+            <h4>Product</h4>
+        </div>
+        <h5>TOTAL</h5>
+      </div>
+      <div class="cart-items">
+        <div *ngFor="let item of productsFromCart" style="display: flex;padding: 30px;">
+            
+            <div>
+                <img src="https://localhost:7036/images/{{item.umetnickoDelo.putanja}}" alt="{{item.umetnickoDelo.naziv}}" >
+            </div>
+          <div>
+          <div class="cart-item-details">
+            <h5>{{item.umetnickoDelo.naziv}}</h5>
+            <p>{{item.umetnickoDelo.cena}}$</p>
+            <p>Condition: {{item.condition}}</p>
+          </div>
+          <div style="display: flex; gap: 20px">
+          <div class="cart-item-quantity">
+            <button (click)="decreaseQuantity(item)">-</button>
+            <span>{{item.quantity}}</span>
+            <button (click)="increaseQuantity(item)">+</button>
+          </div>
+          <div style="justify-content: center; align-items: center; display: flex;">
+          <button class="remove-btn" (click)="removeItem(item)">🗑</button>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <h5>Subtotal</h5>
+        <h5>{{getSubtotal()}}$</h5>
+        <button class="checkout-btn" routerLink="/checkout">Check out</button>
+      </div>
+    </div>
+  </div>
+  

@@ -34,8 +34,8 @@ export class AddArtPtgComponent implements OnInit {
   addForm = new FormGroup(
     {
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      width: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
-      height : new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+      price: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
+      description : new FormControl('', [Validators.required, Validators.pattern(/^\d+$/)]),
       image : new FormControl('', Validators.required)
 
 
@@ -45,10 +45,10 @@ export class AddArtPtgComponent implements OnInit {
     return this.addForm.get('name')
   }
   get Visina(){
-    return this.addForm.get('height');
+    return this.addForm.get('description');
   }
   get Sirina(){
-    return this.addForm.get('width');
+    return this.addForm.get('price');
   }
   get Putanja(){
     return this.addForm.get('image');
@@ -93,8 +93,8 @@ export class AddArtPtgComponent implements OnInit {
     const putanja = inputElement?.files?.[0];
     var formData = new FormData();
     formData.append('Naziv', this.addForm.get('name')?.value);
-    formData.append('Visina', this.addForm.get('height')?.value);
-    formData.append('Sirina', this.addForm.get('width')?.value);
+    formData.append('Opis', this.addForm.get('description')?.value);
+    formData.append('Cena', this.addForm.get('price')?.value);
     formData.append('Putanja',  putanja || "");
     formData.append('slikarId', this.user.painter.id)
     formData.append('celinaId', this.id)

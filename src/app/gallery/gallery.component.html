@@ -7,45 +7,29 @@
 </head>
 <body>
   <div class="place-page">
-  <section style="background-color: #eee;">
+  <section class="gallery-section">
     <div class="container-fluid py-5">
-      <h1 class="text-center mb-5"><strong>GALLERY SHOW</strong></h1>
-      <h5 class="text-center mb-5">An art gallery is a space dedicated to exhibiting artworks in the form of paintings. It serves as a place where visitors can immerse themselves in various artistic styles, themes, and techniques through curated exhibitions. Art galleries play a crucial role in promoting and showcasing the works of both established and emerging artists. </h5>
-      <div class="justify-content-center" id="filter-container" >
-        <div class="me-5">
-          <label for="sala">Auditorium:</label>
-          <select id="sala"  id="filterByAud" (change)="filterByAuditorium()">
-            <option value="">All Auditoriums</option>
-            <option *ngFor="let auditorium of auditoriums" value="{{auditorium.id}}">{{auditorium.naziv}}</option>
-          </select>
-        </div>
-        <div>
-          <label for="tematskaCelina">Thematic unit:</label>
-          <select id="tematskaCelina" (change)="filterByAuditorium()">
-            <option value="">All Thematic units </option>
-            <option  *ngFor="let unit of thematicUnit" value="{{unit.id}}">{{unit.naziv}}</option>
-          </select>
-        </div>
-      </div>
-      <div style="display: flex; justify-content: center; flex-wrap: wrap;" >
-        <div class="col-lg-3 col-md-12 mb-4 me-2" *ngFor="let image of galleryImages">
-          <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-            <img *ngIf="image?.putanja" [src]="'http://napredne-001-site1.gtempurl.com/images/' + image.putanja"
-              class="w-100"  style="width: 300px;height: 300px;"/>
-              <div class="mask" style="display:flex;justify-content: space-between;" >
-                <div class="d-flex" id="text" style="width:300px" >
-                  <h5 class="pt-2 ms-1 mt-3 text-dark no-underline" style="text-decoration: none;">{{image.naziv| short:20 }}</h5>
-                </div>
-                 <div class="d-flex justify-content-start align-items-start h-100" >
-                  <h5><button class="badge bg-light pt-2 ms-3 mt-3 text-dark" (click)="detalji(image.id)">See more</button></h5>
-                </div>
-              </div>
+      <h1 class="text- mb-5" style="display: flex;justify-content: start;margin-left: 170px;font-family: 44Bitter, serif"><strong> {{ageBasedToys}} Months Age Based Toys</strong></h1>
+      <h5 class="text-center mb-5" style="display: flex;justify-content: start;margin-left: 170px;font-family: 44Bitter, serif">Purchase one of our developmentally-stimulating play kits for children aged  {{ageBasedToys}} Months.  </h5> 
+
+      <div class="gallery">
+        <div class="d-inline-block gap-5 m-3" *ngFor="let item of galleryImages">
+          <div class="gallery-images align-items-center bg-white" style="display: inline-block;">
+            <img src='https://localhost:7036/images/{{item.putanja}}' style="height: 200px; width: 200px;" id="homepageImage"/>
+            <div style="margin-top: 50px !important;">
+            <p style="color: black; font-size: 16px;text-align: center;height: 30px;" class="toy-title" (click)="goToDetails(item.id)">{{item?.naziv}}</p>
+            <div class="d-flex gap-5 justify-content-center">
+              <!-- <p class="strikethrough">${{item?.umetnickoDelo?.cena}}</p>  -->
+              <p class="slightly-larger">From ${{item?.cena}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    </div>
   </section>
-  <div *ngIf="galleryImages.length == 0"><h1 style="text-align: center;">There are no images</h1></div>
+  <div *ngIf="galleryImages.length == 0"><h1 style="text-align: center;">There are no toys</h1></div>
   </div>
 
   <nav aria-label="Page navigation example" style="display:flex; justify-content:center;">

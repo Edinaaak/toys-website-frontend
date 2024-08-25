@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 
 import { User } from "src/app/interfaces/User";
-import { addArtsPainting, login, logout, updateUser } from "../actions/user.actions";
+import { addArtsPainting, getProductLength, login, logout, setProducts, updateUser } from "../actions/user.actions";
 
 export const initialState : User = {
   expires: '',
@@ -16,7 +16,19 @@ export const userReducer = createReducer(
   on(login, (state, user) => Object.assign({}, state, user)),
   on(logout, () => Object.assign({}, initialState)),
   on(updateUser, (state, {painter}) => ({...state, painter:{...state.painter, ...painter}})),
-  on(addArtsPainting, (state, {dela}) => ({...state, dela: state.dela.concat(dela)}))
+  on(addArtsPainting, (state, {dela}) => ({...state, dela: state.dela.concat(dela)})),
+
 )
 
+export const initialProductState = {
+  products: [] as any[]
+}
 
+export const productReducer = createReducer(
+  initialProductState,
+  on(getProductLength, (state) => state),
+  on(setProducts, (state, { products }) => ({
+    ...state,
+    products: products
+  })
+))

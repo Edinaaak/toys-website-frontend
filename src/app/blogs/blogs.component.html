@@ -1,0 +1,15 @@
+<div class="latest-news">
+    <h2>Latest News</h2>
+    <div class="news-container">
+      <div class="news-card" *ngFor="let article of articles">
+        <img src="assets/images/{{article.image}}" alt="{{article.title}}" class="news-image">
+        <div class="news-content">
+          <h3 class="news-title">{{article.title}}</h3>
+          <p class="news-date">{{article.date | date: 'MMMM d, y'}}</p>
+          <p class="news-summary">{{article.summary}}</p>
+          <p class="news-comments">{{article.comments}} comment{{ article.comments > 1 ? 's' : '' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

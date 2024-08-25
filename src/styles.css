@@ -3,11 +3,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-.navbar
-{
-  background-color: #AFBDD2
+/* src/styles.css */
+body {
+  font-family: 'Questrial', sans-serif !important;
+  background-color: white !important;
 }
 
+
+.navbar
+{
+  background-color: white;
+}
+
+
+.navbar a 
+{
+  color: black;
+}
 
 .nav-link
 {

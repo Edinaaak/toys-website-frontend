@@ -1,8 +1,8 @@
 <form [formGroup]="forma">
-  <h3 style="text-align: center;">Add an auditorium</h3>
+  <h3 style="text-align: center;">Add a group name by interest</h3>
   <div class="alert alert-success d-flex justify-content-center" *ngIf="added">
     <div style="text-align: center;">
-      You added successfully the auditorium!
+      You added successfully the group name by interest!
     </div>
   </div>
   <!-- Email input -->
@@ -11,31 +11,31 @@
     <input type="text" id="form2Example1" class="form-control" formControlName="name" />
   </div>
   <div *ngIf="name?.touched && name?.invalid">
-    <p class="alert alert-danger " *ngIf="name?.errors?.required">The name is required</p>
+    <p class="alert alert-danger " *ngIf="name?.errors?.required">The field is required</p>
   </div>
 
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <label class="form-label" for="form2Example2">Area</label>
+    <label class="form-label" for="form2Example2">Toy Number</label>
     <input type="text" id="form2Example2" class="form-control" formControlName="area" />
   </div>
   <div *ngIf="area?.touched && area?.invalid">
-    <p class="alert alert-danger " *ngIf="area?.errors?.required">The area is required</p>
-     <p class="alert alert-danger " *ngIf="area?.errors?.pattern">The area must be a number</p>
+    <p class="alert alert-danger " *ngIf="area?.errors?.required">The field is required</p>
+     <p class="alert alert-danger " *ngIf="area?.errors?.pattern">The toy number must be a number</p>
   </div>
 
 
 
    <!-- Text input -->
-   <div class="form-outline mb-4">
+   <!-- <div class="form-outline mb-4">
     <label  class="form-label">Place</label>
     <select class="form-select form-select-lg" name="" id="selectPlace" (change)="choose()" >
       <option value="-1" selected>Choose place</option>
       <option *ngFor="let place of places" value="{{place.id}}">{{place.naziv}}</option>
     </select>
-  </div>
+  </div> -->
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addAuditorium()" [disabled]="forma.invalid">Add a place</button>
+  <button type="button" class="btn btn-primary btn-block mb-4" (click)="addAuditorium()" [disabled]="forma.invalid">Add a name</button>
 </form>

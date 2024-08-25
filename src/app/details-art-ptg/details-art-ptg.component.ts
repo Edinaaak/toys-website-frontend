@@ -4,6 +4,8 @@ import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { AuditoriumService } from '../auditorium.service';
 import { Store } from '@ngrx/store';
 import { User } from '../interfaces/User';
+import { CartService } from '../cart.service';
+import { setProducts } from '../store/actions/user.actions';
 
 @Component({
   selector: 'app-details-art-ptg',
@@ -13,7 +15,7 @@ import { User } from '../interfaces/User';
 export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
   constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService, private router : Router,
-    private userStorage:Store<{user:User}>) {
+    private userStorage:Store<{user:User}>, private cartService : CartService, private productStore: Store<{product: any}>) {
       this.userStorage.select('user').subscribe(res =>
         {
           this.user = res
@@ -32,6 +34,11 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
   idAuditorium : any = 0;
   user : User = {} as User
   alreadyRate : boolean = false
+  isShippingInfoHidden: boolean = true;
+  isConditionDescriptionsHidden: boolean = false;
+  selectedCondition: string = 'excellent';  
+  selectedQuantity: number = 1; 
+  reviews: any = []
   ngOnInit(): void {
 
 
@@ -41,12 +48,14 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
     )
 
 
+
     this.fetchMark()
 
     this.artPtg.getArtPtgById(this.id)
     .subscribe(res =>
       {
         this.artPtgDetails = res;
+        this.getReviews();
         console.log(res)
 
       },
@@ -59,6 +68,12 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
       .subscribe(res=>
         {
           this.auds = res.data;
+        })
+
+        this.cartService.getCartByUser(this.user.painter.id).subscribe(res =>{
+          console.log(res, "cart")
+          this.productStore.dispatch(setProducts({ products: res }));
+          localStorage.setItem('products', JSON.stringify(res));
         })
 
     }
@@ -80,6 +95,7 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
             .subscribe(res=>
               {
                 this.fetchMark()
+                this.getReviews();
               },
               error=>
               {
@@ -163,7 +179,41 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
         }
     }
 
+    toggleShippingInfo() {
+      this.isShippingInfoHidden = !this.isShippingInfoHidden;
+    }
+  
+    toggleConditionDescriptions() {
+      this.isConditionDescriptionsHidden = !this.isConditionDescriptionsHidden;
+    }
 
+
+    addToCart() {
+     
+      const request = {
+        userId: this.user.painter?.id,
+        deloId: this.artPtgDetails.id,
+        quantity: this.selectedQuantity,
+        condition: this.selectedCondition,
+      };
+
+      this.cartService.addProductToCart(request).subscribe((res) => {
+        alert('Product added to cart');
+        this.cartService.getCartByUser(this.user.painter.id).subscribe(res =>{
+          console.log(res, "cart")
+          this.productStore.dispatch(setProducts({ products: res }));
+          localStorage.setItem('products', JSON.stringify(res));
+        })
+       
+        console.log(res);
+      });
+    }
+
+    getReviews() {
+      this.artPtg.getReviews(this.artPtgDetails.id).subscribe(res => {
+        this.reviews = res;
+      });
+    }
 
 
 }

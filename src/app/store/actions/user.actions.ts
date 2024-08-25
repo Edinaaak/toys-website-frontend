@@ -12,3 +12,7 @@ export const updateUser = createAction( '[Update-user Component] UpdateUser', pr
 );
 
 export const addArtsPainting = createAction('[add-arts-painting]', props<{dela : any}>());
+
+export const getProductLength = createAction('[get-product-length]');
+
+export const setProducts = createAction('[set-products]', props<{products: any}>());

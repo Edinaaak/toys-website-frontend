@@ -24,7 +24,7 @@
 
 #moreAbout{
   width: 150px;
-  background-color:#AFBDD2;
+  background-color:rgb(242,181,49,1);
 }
 #moreAbout
 {
@@ -36,7 +36,7 @@
 
 {
   margin-top: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 #buttonDetail
@@ -51,22 +51,22 @@
 }
 
 .card {
-  border-radius: 6px;
+  border-radius: 20px;
   background-color: #FFFFFF;
+  border: 1px solid black;
   margin-bottom: 20px;
   box-shadow: 0 25px 20px -21px rgba(0,0,0,0.57);
   margin-top:30px;
+  height: 400px;
 }
 .card-background {
   position: relative;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 .card-background .image {
   border-radius: 6px;
 }
 .card .image {
   width: 100%;
-  overflow: hidden;
   height: 260px;
   border-radius: 6px 6px 0 0;
   position: relative;
@@ -82,7 +82,7 @@
 .card-background .filter {
   opacity: 0.20;
   filter: alpha(opacity=20.00000000000001);
-  border-radius: 6px;
+  border-radius: 10px;
 }
 .card .filter {
   position: absolute;
@@ -154,8 +154,7 @@ button
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  overflow-y: auto;
-  max-height: 650px;
+  min-height: 650px;
 }
 
 .col-md-3 {
@@ -177,6 +176,7 @@ button
 
 .card {
   width: 90%;
+  height: 450px;
 }
 
 .card-background {
@@ -184,8 +184,6 @@ button
 }
 
 .image {
-  width: 80%;
-  height: 0;
   padding-bottom: 100%;
   background-size: cover;
   background-position: 50% 50%;
@@ -201,6 +199,7 @@ button
 
 .footer {
   padding: 10px;
+  cursor: pointer;
 }
 
 .stats {
@@ -210,4 +209,62 @@ button
 
 .fa-star {
   font-size: 25px;
+}
+
+
+.card-body{
+ text-align: center;
+  max-width: 800px;
+}
+
+#homepageImage:hover{
+  transform: scale(1.05) !important;
+  transition: transform 0.5s !important;
+  cursor: pointer;
+}
+
+.container-sale {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 40px;
+  margin-left: 120px;
+  height: auto;
+}
+
+.container-sale::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.card-background-sale {
+  margin-right: 10px;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 15px;
+  height: 380px;
+  width: 230px;
+
+}
+
+.saleTitle {
+  font-size: calc(var(--font-heading-scale)* 1.3rem);
+  background-color:rgb(242,181,49,1);
+  color: white;
+  padding: 5px;
+  width: 60px;
+  height: 30px;
+  text-align: center;
+
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+
+.toy-title:hover {
+
+  text-decoration: underline;
+  cursor: pointer;
 }

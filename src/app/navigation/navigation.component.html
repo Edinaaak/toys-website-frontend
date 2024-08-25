@@ -1,57 +1,112 @@
-
-
-
 <body>
-  <nav class="navbar navbar-expand" id="custom-navbar">
+    <div class="container bg-white p-4" *ngIf="isSearchVisible">
+      <form class="navbar-search" id="searchForm" role="search" style="display: flex;justify-content:center; width: 100%;">
+        <input type="search" placeholder="Search" aria-label="Search">
+        <button type="submit">Search</button>
+        <button class="navbar-search-icon" id="searchIcon" (click)="toggleSearch()">
+          <i class="bi bi-x"></i> <!-- Koristite odgovarajuću ikonicu -->
+        </button>
+      </form>
+    </div>
+  
+  <nav class="navbar" *ngIf="!isSearchVisible">
+  <div class="navbar-container">
+    <button class="navbar-search-icon" id="searchIcon" (click)="toggleSearch()">
+      <i class="bi bi-search"></i> <!-- Koristite odgovarajuću ikonicu -->
+    </button>
+    <a class="navbar-logo" href="#">
+      <img src="assets/images/logo.jpg" alt="Logo" style="height: 40px;">
+    </a>
+
+    <div>
+    <a class="navbar-login" [routerLink]="['login']" *ngIf="!loginService.isLoggedIn()" id="loginButton">
+      <i class="bi bi-person" style="font-size: 24px;"></i> <!-- Primer za ikonicu koristeći Bootstrap Icons -->
+    </a>
+    <a class="navbar-login" [routerLink]="['login']" (click)="loginService.logout()" *ngIf="loginService.isLoggedIn()">
+      <i class="bi bi-person-x" style="font-size: 24px;"></i> <!-- Person with a cross icon -->
+    </a>
+    <a class="navbar-cart"  (click)="openComp()" style="position: relative; cursor: pointer;">
+      <i class="bi bi-cart" style="font-size: 22px; margin-left: 10px;"></i> <!-- Korpa ikonica -->
+      <span  *ngIf="length > 0" class="badge rounded-pill" 
+            style="position: absolute; top: 0; right: -10px; background-color: orange;">
+        {{length}}
+      </span>
+    </a>
+    <app-basket #cartComponent></app-basket>
+    
+  </div>
+  </div>
+</nav>
+
+  <nav class="navbar navbar-expand" id="custom-navbar" *ngIf="!isSearchVisible">
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['']">Home</a>
+            <a class="nav-link active" [routerLink]="['gallery']">All Toys</a>
           </li>
+         <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          By Age
+        </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let thematicUnit of thematicUnits">
+              <a class="dropdown-item" [routerLink]="['/gallery/age',thematicUnit.naziv,thematicUnit.id]">{{ thematicUnit.naziv }} Months</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            By Interest
+          </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li *ngFor="let toyByInterest of toysByInterests">
+                <a class="dropdown-item" [routerLink]="['/gallery/interest',toyByInterest.naziv, toyByInterest.id]">{{ toyByInterest.naziv }}</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              By Price
+            </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li *ngFor="let price of prices">
+                  <a class="dropdown-item" [routerLink]="['/gallery/price/filter',price]">Under{{price}}$</a>
+                </li>
+                <li><a class="dropdown-item" [routerLink]="['/gallery/price/filter', 41]">$40+</a></li>
+              </ul>
+            </li>
           <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/blogs']">Blog</a>
+          </li>
+          <!-- <li class="nav-item">
             <a class="nav-link" [routerLink]="['about']">About</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item"> 
             <a class="nav-link" [routerLink]="['gallery']">Gallery</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['add-art-ptg']" *ngIf="user.role == 'Slikar'">Add art painting</a>
+            <a class="nav-link" [routerLink]="['add-art-ptg']" *ngIf="user.role == 'Slikar'">Add a toy</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" [routerLink]="['add-place']" *ngIf="user.role == 'Admin'">Add place</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['add-auditorium']" *ngIf="user.role == 'Admin'">Add auditorium</a>
+            <a class="nav-link" [routerLink]="['add-auditorium']" *ngIf="user.role == 'Admin'">Add By Interest</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['profile']" *ngIf="user.token != ''">My profile</a>
           </li>
-          <li class="nav-item">
+         <li class="nav-item">
             <a class="nav-link" [routerLink]="['jury-list']" *ngIf="user.role == 'Admin'">Jury list</a>
           </li>
-          <li class="nav-item">
+           <!-- <li class="nav-item">
             <a class="nav-link" [routerLink]="['control']" *ngIf="user.role == 'Admin'">Control</a>
-          </li>
-        </ul>
+          </li> -->
+        </ul> 
+      
 
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <button type="button" class="btn btn-primary me-2" [routerLink]="['register']" *ngIf="!loginService.isLoggedIn()">Sign up</button>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-primary" [routerLink]="['login']" (click)="loginService.logout()" *ngIf="loginService.isLoggedIn()">Logout</button>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-primary" [routerLink]="['login']" *ngIf="!loginService.isLoggedIn()" id="loginButton">Login</button>
-          </li>
-        </ul>
-      </div>
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <h5 class="text-white h4">Collapsed content</h5>
-          <span class="text-muted">Toggleable via the navbar brand.</span>
-        </div>
+
       </div>
     </div>
   </nav>

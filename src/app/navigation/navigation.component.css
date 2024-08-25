@@ -54,3 +54,105 @@
     display: none;
   }
 }
+
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  gap: 400px;
+  width: 100%;
+  background-color: white;
+}
+
+
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search input[type="search"] {
+  margin-right: 5px;
+  width: 200px; /* Prilagodite širinu pretrage po potrebi */
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.navbar-logo img {
+  height: 40px; /* Prilagodite visinu logoa po potrebi */
+}
+
+.navbar-login {
+  flex: 0 1 auto;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap; 
+  width: 100%;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 10px; 
+}
+.navbar-search-icon {
+  background-color: white ;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center; /* Vertikalno poravnanje elemenata unutar forme */
+  gap: 10px; /* Razmak između input-a i dugmeta */
+}
+
+.navbar-search input[type="search"] {
+  border-radius: 10px; /* Zaobljene ivice za input */
+  padding: 5px 10px; /* Padding unutar input-a */
+  border: 1px solid #ced4da; /* Opcionalno, za dodavanje obruba */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); /* Opcionalno, za dodavanje senke */
+}
+
+.navbar-search button {
+  border-radius: 10px; /* Zaobljene ivice za dugme */
+  padding: 5px 10px; /* Padding unutar dugmeta */
+  border: none; /* Uklanja obrub oko dugmeta */
+  background-color: #007bff; /* Pozadina dugmeta */
+  color: white; /* Boja teksta dugmeta */
+  cursor: pointer; /* Pokazuje da je dugme klikabilno */
+}
+
+.navbar-search button:hover {
+  background-color: #0056b3; /* Tamnija boja pozadine dugmeta kada je prelazite mišem */
+}
+
+.navbar {
+  display: flex;
+  justify-content: center; /* Centriranje navigacije horizontalno */
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: center; /* Centriranje sadržaja unutar kontejnera */
+  width: 100%; /* Osigurava da kontejner zauzima celu širinu dostupnu */
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center; /* Vertikalno centriranje elemenata unutar forme */
+  gap: 10px; /* Razmak između input-a i dugmeta */
+}
+
+.navbar-search input[type="search"] {
+  width: 200px; /* Širina input-a, prilagodite prema potrebama */
+  padding: 5px; /* Padding unutar input-a */
+}
+
+.navbar-search button {
+  padding: 5px 10px; /* Padding unutar dugmeta */
+}

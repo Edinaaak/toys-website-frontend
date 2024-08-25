@@ -42,6 +42,9 @@ export class ArtPaintingService {
       params.salaId = param.salaId;
     }
 
+    if (param.cenaOd > 0) {
+      params.cenaOd = param.cenaOd;
+    }
     params.currPage = param.currPage;
     params.pageSize = param.pageSize;
 
@@ -69,4 +72,8 @@ export class ArtPaintingService {
     return this.http.delete<any>(`${this.url}/Masterpiece/${id}`)
   }
 
+  getReviews(id: number)
+  {
+    return this.http.get<any>(`${this.url}/Masterpiece/get-reviews/${id}`)
+  }
 }

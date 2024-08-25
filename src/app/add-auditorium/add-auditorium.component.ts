@@ -44,9 +44,8 @@ export class AddAuditoriumComponent implements OnInit {
     {
        naziv : this.forma.get('name')?.value,
        povrsina : this.forma.get('area')?.value,
-       mestoId : this.id
+        mestoId : null
     }
-    if(this.id != -1){
     this.auditoriumService.addAuditorium(request)
     .subscribe((res:any) => {
      this.added = true;
@@ -55,11 +54,7 @@ export class AddAuditoriumComponent implements OnInit {
     {
       console.log(error)
     })
-  }
-  else
-  {
-    alert('You did not choose place')
-  }
+  
 }
 
 

@@ -58,4 +58,43 @@ li:active
 
 .place-page {
   min-height: calc(100vh - 100px) !important;
+  background-color: white !important;
 }
+
+
+.gallery-images {
+
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 350px;
+  width: 280px;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.gallery-images img:hover{
+
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+
+.gallery{
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0px 150px 0px 160px;
+  gap: 20px
+}
+
+.toy-title:hover
+{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+

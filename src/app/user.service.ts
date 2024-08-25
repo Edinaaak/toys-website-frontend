@@ -18,29 +18,29 @@ export class UserService {
 
   createUser(user: any)
   {
-    return this.http.post<any>(`${this.url}/api/Auth/register`, user);
+    return this.http.post<any>(`${this.url}/Auth/register`, user);
   }
 
   getJuries()
   {
-    return this.http.get<any>(`${this.url}/api/User/jury-list`);
+    return this.http.get<any>(`${this.url}/User/jury-list`);
   }
 
   acceptJury(id:number)
   {
-    return this.http.put<any>(`${this.url}/api/User/accept/${id}`, null);
+    return this.http.put<any>(`${this.url}/User/accept/${id}`, null);
 
   }
 
   declineJury(id:number)
   {
-    return this.http.delete<any>(`${this.url}/api/User/decline/${id}`);
+    return this.http.delete<any>(`${this.url}/User/decline/${id}`);
   }
 
 
   updateUser(id:number, user:any)
   {
-    return this.http.put<any>(`${this.url}/api/User/${id}`, user);
+    return this.http.put<any>(`${this.url}/User/${id}`, user);
   }
 
   deleteUser(id:number)
@@ -50,7 +50,7 @@ export class UserService {
 
   getUsers()
   {
-    return this.http.get<any>(`${this.url}/api/User`);
+    return this.http.get<any>(`${this.url}/User`);
   }
 
   forgotPassword (email : any)
@@ -59,24 +59,24 @@ export class UserService {
     {
       headers : {'Content-Type': 'application/json'}
     }
-    return this.http.post<any>(`${this.url}/api/Auth/forgot-password`, email, options);
+    return this.http.post<any>(`${this.url}/Auth/forgot-password`, email, options);
   }
   checkToken(token : any)
   {
     const options = {
       headers: { 'Content-Type': 'application/json' }
     };
-    return this.http.post<any>(`${this.url}/api/Auth/check-token`, token, options)
+    return this.http.post<any>(`${this.url}/Auth/check-token`, token, options)
   }
 
   changePassword(request : any)
   {
-    return this.http.post<any>(`${this.url}/api/Auth/reset-password`, request);
+    return this.http.post<any>(`${this.url}/Auth/reset-password`, request);
   }
 
   getById(id:number)
  {
-  return this.http.get<any>(`${this.url}/api/User/${id}`)
+  return this.http.get<any>(`${this.url}/User/${id}`)
  }
 
 

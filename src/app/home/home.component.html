@@ -11,7 +11,7 @@
   <div class="d-flex flex-column bd-highlight mb-3" >
   <div class="carousel">
     <div *ngFor="let imagePath of imagePaths; let i = index" class="carousel-item" [class.active]="i === currentImageIndex">
-      <img [src]="imagePath" class="d-block w-100 carousel-image" alt="Slika" (click)="changeImage(i)">
+      <img [src]="imagePath" class="d-block w-100 " style="height: 1000px !important;" alt="Slika" (click)="changeImage(i)">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" (click)="prevImage()" >
@@ -23,124 +23,52 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div class="card1">
+<div class="card1 d-flex justify-content-center">
   <div class="card-body">
-    <h1 class="display-5 ml-5 text-center">Art Exhibition</h1>
-    <p class="lead text-center mb-0" id="welcome-text">Welcome to the homepage of the art exhibition! This exhibition showcases a collection of artworks that depict the diversity and beauty of the world around us. Through these paintings, artists have conveyed their visions, emotions, and ideas on canvases, creating unique and inspiring pieces of art.</p>
-    <p class="text-center">Enjoy this virtual tour through the art exhibition and allow art to inspire and touch you. Thank you for joining us on this artistic adventure!</p>
+    <h1 class="display-5 ml-5 text-center">Massive Toy Clearance: 20-50% Off All Wooden Toys</h1>
+    <p class="lead text-center mb-0" id="welcome-text">We're closing down our toy rental subscriptions, so our entire inventory is on clearance!
+      We have a wide range of new (in the box) and gently used educational wooden toys for children from birth through age 3 and beyond.
+      Categorized by age and ready for play!</p>
+    <p class="text-center">Categorized by age and ready for play!</p>
     <p class="lead text-center">
-      <a class="btn btn-primary btn-lg"  href="http://elmaaa-001-site1.ftempurl.com/about"  role="button" id="moreAbout">Learn More</a>
+      <a class="btn btn-primary btn-lg"  href="http://localhost:4200/blogs"  role="button" id="moreAbout">Shop Now</a>
     </p>
   </div>
 </div>
-<div class="container overflow-hidden mb-5">
-  <div class="row gx-5">
-    <div class="col">
-     <div class="p-3 border bg-light text-center" id="card">
-       <h2 class="mb-4" style="font-size: 24px; font-weight: bold;">Exhibition of Master Painters</h2>
-       Discover the masterpieces of great painters who defined the world of painting.
-       An exhibition that will enchant you with its beauty and details.
-       Experience the richness of colors, textures, and emotional depth in each piece.
-       Join us and explore the world of art through the eyes of legendary painters.
-     </div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light text-center" id="card">
-        <h2 class="mb-4" style="font-size: 24px; font-weight: bold;">Exhibition of Contemporary Sculpture</h2>
-        Experience sculptures that provoke thoughts and animate space.
-        Discover innovative forms, materials, and concepts that will fascinate you.
-        Contemporary sculptures that stand out for their originality and expressiveness.
-        Visit the exhibition and let the sculptures transport you to a world of imagination and inspiration.
-      </div>
-    </div>
-  </div>
-</div>
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" (click)="toggleAccordion('collapseOne')" [attr.aria-expanded]="isAccordionExpanded('collapseOne')" aria-controls="collapseOne" #accordionButton  id="buttonDetail">
-            Artistic Kaleidoscope
-        </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-            <p>
-                Explore the magical world of art through enchanting and deeply contemplative paintings. Immerse yourself in the visual delight of colors, shapes, and emotions. Each artwork carries a unique story, inviting you to interpret its meaning and connect with the artist's creative vision. From captivating landscapes to abstract expressions of the human experience, these artistic creations will awaken your senses and inspire your imagination.
-            </p>
-            <p>
-                Whether you appreciate classical masterpieces or boundary-pushing contemporary works, our collection offers a diverse range of styles and genres. Discover the power of brushstrokes, the play of light and shadow, and evocative compositions that stir the soul. Allow yourself to be transported to different worlds, to see beauty in unexpected places, and to find inspiration in the depths of artistic expression.
-            </p>
-            <p>
-                Art has the extraordinary ability to transcend linguistic and cultural barriers, to speak directly to the heart and soul. Let these paintings awaken your passion for creativity, ignite your curiosity, and enhance your appreciation for the boundless possibilities of artistic expression. Dive into the world of art and let your imagination soar as you journey through the captivating realm of visual aesthetics.
-            </p>
-        </div>
-    </div>
-</div>
 
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingTwo">
-      <button  class="accordion-button" type="button" (click)="toggleAccordion('collapseTwo')" [attr.aria-expanded]="isAccordionExpanded('collapseTwo')" aria-controls="collapseTwo" #accordionButton id="buttonDetail">
-          Artistic Journey Through Time
-      </button>
-  </h2>
-  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-          <p>
-              Step into the world of art through this unique accordion item. Discover the richness of creativity that spans across centuries. Here, you will find painterly masterpieces, lifelike sculptures, and art installations that evoke wondrous feelings. Each step through this accordion is like a journey through time, exploring different styles, movements, and artistic revolutions that have shaped the world of art. Immerse yourself in inspiration and experience an emotional connection with works that have been passed down through generations.
-          </p>
-          <p>
-              Whether you are a lover of classical art, avant-garde, or contemporary experiments, this accordion item will captivate you. Absorb the colors, shapes, and symbolism of artworks that tell stories, express ideas, and provoke thoughts. Engage in a dialogue with art and allow it to open new perspectives and a deeper understanding of the world that surrounds us.
-          </p>
-          <p>
-              Art is a universal language that connects us and evokes emotions. This accordion item provides an opportunity to connect with exceptional artworks and momentarily experience the world from the perspective of the artists. Surrender yourself to that magical experience and open your heart and mind to the limitless possibilities that art offers.
-          </p>
-      </div>
-  </div>
-</div>
 
-<div class="accordion-item">
-  <h2 class="accordion-header" id="headingThree">
-      <button  class="accordion-button" type="button" (click)="toggleAccordion('collapseThree')" [attr.aria-expanded]="isAccordionExpanded('collapseThree')" aria-controls="collapseThree" #accordionButton id="buttonDetail">
-          Musical Harmony of the Soul
-      </button>
-  </h2>
-  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-          <p>
-              This accordion item opens the doors to the world of music and brings heavenly harmony directly to your soul. Through it, discover the enchantment of sounds that fill the space and connect us on a level that surpasses words. The art of sound, rhythm, and melodic lines brings joy, sadness, hope, and all the emotions we experience as we journey through life.
-          </p>
-          <p>
-              Whether you love classical music, jazz, rock, or experimental genres, this accordion item will take you on a journey through different musical worlds. Feel the power of orchestral arrangements, the virtuosity of soloists, the soulfulness of vocals, and the energy of bands. Music is a language without boundaries, transmitted through notes, and merges us into a unique harmony with the world around us.
-          </p>
-          <p>
-              This accordion item is an invitation to surrender to the sounds that float in the air and immerse yourself in the musical universe. Close your eyes, open your ears, and allow the melody to transport you to uncharted horizons. Whether you listen to music as a source of relaxation, inspiration, or entertainment, this accordion item will provide moments of pure magic and make time stand still as you get lost in the sounds.
-          </p>
-      </div>
-  </div>
-</div>
-</div>
-
-<h1 style="text-align: center;margin-top: 50px;" *ngIf="top3.length > 0">Top 3 art paintings</h1>
+<h1 style="text-align: start;margin-left: 120px;font-weight: bolder;"  *ngIf="top3.length > 0">Our Age-Based Wooden Toy Collections</h1>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container d-flex" style="flex-wrap:wrap;justify-content: space-around; overflow-y:auto; max-height: 650px;" >
+<div class="container d-flex" style="flex-wrap:wrap;justify-content: space-around;" >
   <div class="col-md-3 me-1" *ngFor="let item of top3">
-    <div class="card card-background">
-      <a class="nav-link" href="http://elmaaa-001-site1.ftempurl.com/gallery/{{item?.id}}">
-      <div class="image" style="background-image: url(http://napredne-001-site1.gtempurl.com/images/{{item?.putanja}}); background-size: cover; background-position: 50% 50%;"></div>
-    </a>
-      <div class="content">
-        <h5 class="price" style="font-size:xx-large;">{{item?.name}}</h5>
-      </div>
-      <div class="footer">
-        <div class="stats pull-right d-flex">
-            <i class="fa fa-star mt-1 me-1" style="font-size: 25px;"></i>
-            <h3>{{item?.price}}</h3>
-        </div>
+    <div class="card card-background align-items-center">
+      <img src="{{item.image}}" style="height: 300px;width: 300px;margin-top: 50px;" id="homepageImage" (click)="goToGroupToys(item.age, item.groupId)"/>
+      <div class="footer text-align-start">
+            <h3 style="color: black; font-size: 22px;">{{item?.title}}</h3>
       </div>
     </div>
   </div>
 </div>
 
+<h1 style="text-align: start;margin-left: 120px;font-weight: bolder;">Explore our clearance toys for children aged 0-3+</h1>
+  <p style="text-align: start;margin-left: 120px;">Purchase age-based Montessori and open-ended toys.</p>
+
+  <div class="container-sale">
+    <div class="d-inline-block" *ngFor="let item of toysOnSale">
+      <div class="card-sale card-background-sale align-items-center" style="display: inline-block;">
+        <p class="saleTitle">Sale</p>
+        <img src='https://localhost:7036/images/{{item.umetnickoDelo.putanja}}' style="height: 200px; width: 200px;" id="homepageImage"/>
+        <p style="color: black; font-size: 14px;text-align: center;height: 30px;" class="toy-title" (click)="goToDetails(item.id)">{{item?.umetnickoDelo?.naziv}}</p>
+        <div class="d-flex gap-5 justify-content-center" >
+          <p class="strikethrough">${{item?.umetnickoDelo?.cena}}</p> 
+          <p class="slightly-larger">From ${{item?.cena}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; justify-content: center;width: 100%;padding: 20px;">
+    <button class="btn btn-primary btn-lg" style="margin-left: 120px;border-radius: 10px;font-size: medium;" id="moreAbout" (click)="goToAll()">View all</button>
+  </div>
 <app-footer></app-footer>
 </body>
 </html>

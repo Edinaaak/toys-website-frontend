@@ -1,0 +1,117 @@
+.cart-dropdown {
+    position: fixed;
+    right: 0;
+    width: 500px;
+    height: 100vh;
+    max-width: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    top: 0;
+  }
+  
+  .cart-content {
+    padding: 20px;
+    overflow-y:scroll; /* Enable vertical scrolling */
+    overflow-x: hidden; 
+    max-height: 100vh;
+  }
+  
+  .cart-content::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+  
+  .cart-header, .card-product {
+    display: flex;
+    justify-content: space-between; /* Distribute space between items */
+    align-items: center; /* Align items vertically in the center */
+    padding: 10px; /* Add some padding around the header */
+    /* border-bottom: 1px solid #ddd;  */
+  }
+  
+  .cart-header h4, .card-product h4 {
+    margin: 0; /* Remove any default margin from the heading */
+    font-size: 30px
+  }
+  
+  .close-btn, .card-product p {
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    font-size: 24px; /* Increase size of the close icon */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  
+
+  .card-product {
+    border-bottom: 1px solid #ddd;
+  }
+  .card-product h4, p {
+    color: gray;
+    font-size: 20px;
+
+  } 
+  
+  .cart-items {
+    margin-top: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .cart-items img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .cart-item-details {
+    flex: 1;
+    margin-left: 10px;
+  }
+  
+  .cart-item-quantity {
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    padding: 15px;
+    border-radius: 20px;
+    width: 150px;
+    justify-content: space-around;
+    font-size: 26px;
+  }
+
+  .cart-item-quantity button {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+  }
+  
+  .remove-btn {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .cart-footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .checkout-btn {
+    background-color: orange;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

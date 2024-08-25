@@ -8,67 +8,107 @@
 </head>
 <body>
 <div class="place-page">
-  <section style="background-color: #eee;">
-    <div class="container py-5">
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-5" id="card">
-          <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="alreadyRate">
-            <div style="text-align: center;">
-              {{error?.msg}}
-            </div>
-          </div>
-          <div class="card text-black" >
-            <img *ngIf="artPtgDetails?.putanja" [src]="'http://napredne-001-site1.gtempurl.com/images/' + artPtgDetails?.putanja"
-              class="card-img-top" alt="Apple Computer" />
-            <div class="card-body">
-              <div class="text-center">
-                <h5 class="card-title">{{artPtgDetails.naziv}}</h5>
-                <p class="text-muted mb-4">Created by: {{artPtgDetails?.user?.ime}}  {{artPtgDetails?.user?.prezime}}</p>
-              </div>
-              <div class="text-center" *ngIf="user?.role == 'Ziri'">
-                <div class="stars">
-                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 1 }"></i>
-                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 2 }"></i>
-                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 3 }"></i>
-                  <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 4 }"></i>
-                  <i class="fa-solid fa-star" [ngClass]="{ 'active': viewMark >= 5 }"></i>
-                </div>
-              </div>
-              <div>
-                <div class="d-flex justify-content-between">
-                  <span>Width:</span><span>{{artPtgDetails.visina}}</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Height</span><span>{{artPtgDetails.sirina}}</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Thematic unit</span><span>{{artPtgDetails?.tematskaCelina?.naziv}}</span>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between total font-weight-bold">
-                <span>Selected auditorium</span><span>{{artPtgDetails?.sala?.naziv}}</span>
-              </div>
-            </div>
-          </div>
+  <div class="product-container">
+    <div class="image-container">
+      <img src='https://localhost:7036/images/{{artPtgDetails.putanja}}' alt="Wooden Stroller Clip Toy" class="product-image">
+    </div>
+    <div class="product-details">
+      <h1 class="product-title">{{artPtgDetails.naziv}}</h1>
+      <div class="product-price">
+        <span class="original-price">$ {{artPtgDetails.cena}}</span>
+        <span class="sale-price">$8.00</span>
+        <span class="sale-label">Sale</span>
+      </div>
+      <p class="shipping-info">Shipping calculated at checkout.</p>
+      <div class="product-condition">
+        <label for="condition">Condition</label><br>
+        <select id="condition" [(ngModel)]="selectedCondition">
+          <option value="excellent">Excellent</option>
+          <option value="good">Good</option>
+        </select>
+      </div>
+      <div class="product-quantity">
+        <label for="quantity">Quantity</label><br>
+        <input type="number" id="quantity" value="1" min="1" [(ngModel)]="selectedQuantity">
+      </div>
+      <button class="add-to-cart" (click)="addToCart()">Add to cart</button>
+      <p class="product-description">{{artPtgDetails.opis}}</p>
+      <hr/>
+      <div class="shipping-info">
+        <h5>
+          <span class="icon">📦</span> Shipping Information
+          <button class="toggle-button" (click)="toggleShippingInfo()">▾</button>
+        </h5>
+        <div class="shipping-content" *ngIf="isShippingInfoHidden">
+          We currently ship across Canada, excluding remote locations. Free shipping on orders over $120. Flat rate of $12 for orders under $120.
         </div>
-       <div class="d-flex justify-content-center mt-3" *ngIf="user?.painter?.ime == artPtgDetails?.user?.ime">
-         <button type="button" name="" id="" class="btn" (click)="deleteArt()">Delete</button>
-       </div>
+        <hr/>
+      </div>
+    
+      <div class="toy-condition">
+        <h5>
+          <input type="checkbox" checked /> Toy Condition Descriptions
+          <button class="toggle-button" (click)="toggleConditionDescriptions()">▾</button>
+        </h5>
+        <div class="condition-content" *ngIf="isConditionDescriptionsHidden">
+          <p>"New (packaged)" toys are just that - new and in the package.</p>
+          <p>"Like new" toys are out of the packaging and in close-to-new condition.</p>
+          <p>"Good" toys have been rented out but are still in good condition.</p>
+          <p>"Well-used" toys still do the job but have more wear, like faded or worn paint, scratches, small dents, etc.</p>
+        </div>
+        <hr/> 
       </div>
     </div>
-  </section>
-  <div class="container mb-5 mt-0" *ngIf="user?.role == 'Admin'">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form class="text-center">
-          <div class="form-group">
-            <label for="auditoriumSelect">Auditorium name</label><br><br>
-            <select class="form-control" id="auditoriumSelect" (change)="setIdAuditorium()">
-              <option *ngFor="let item of auds" [value]="item?.id">{{item?.naziv}}</option>
-            </select><br>
-          </div>
-          <button type="button" class="btn btn-primary" (click)="addImageToAuditorium(id)">Add a place</button>
-        </form>
+
+    
+  </div>
+  
+
+  <h1 class="text-center bold-2" style="font-weight: bolder;  ">Reviews</h1>
+  <div  class="text-start" style="margin-left: 250px;">
+    <div class="stars">
+      <small style="font-size: 40px; padding: 5px;">{{viewMark}}.00</small>
+      <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 1 }"></i>
+      <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 2 }"></i>
+      <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 3 }"></i>
+      <i class="fa-solid fa-star me-3" [ngClass]="{ 'active': viewMark >= 4 }"></i>
+      <i class="fa-solid fa-star" [ngClass]="{ 'active': viewMark >= 5 }"></i>
+    </div>
+    <div class="rating-bar-container">
+      <div class="rating-row">
+        <span class="star">★</span> 5
+        <div class="rating-bar">
+          <div class="filled-bar" [style.width.%]="(reviews.reviewsForFive / reviews.totalReviews  ) * 100"></div>
+        </div>
+        <span class="review-count">{{reviews.reviewsForFive}} Reviews</span>
+      </div>
+      <div class="rating-row">
+        <span class="star">★</span> 4
+        <div class="rating-bar">
+          <div class="filled-bar"  [style.width.%]="(reviews.reviewsForFour / reviews.totalReviews ) * 100"></div>
+        </div>
+        <span class="review-count">{{reviews.reviewsForFour}} Reviews</span>
+      </div>
+      <div class="rating-row">
+        <span class="star">★</span> 3
+        <div class="rating-bar">
+          <div class="filled-bar"  [style.width.%]="(reviews.reviewsForThree / reviews.totalReviews ) * 100"></div>
+        </div>
+        <span class="review-count">{{reviews.reviewsForThree}} Reviews</span>
+      </div>
+      <div class="rating-row">
+        <span class="star">★</span> 2
+        <div class="rating-bar">
+          <div class="filled-bar"  [style.width.%]="(reviews.reviewsForTwo / reviews.totalReviews ) * 100"></div>
+        </div>
+        <span class="review-count">{{reviews.reviewsForTwo}} Reviews</span>
+      </div>
+      <div class="rating-row">
+        <span class="star">★</span> 1
+        <div class="rating-bar">
+          <div class="filled-bar"  [style.width.%]="(reviews.reviewsForOne / reviews.totalReviews ) * 100"></div>
+        </div>
+        <span class="review-count">{{reviews.reviewsForOne}} Reviews</span>
       </div>
     </div>
   </div>
@@ -76,3 +116,5 @@
 <app-footer></app-footer>
 </body>
 </html>
+
+     

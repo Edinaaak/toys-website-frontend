@@ -101,7 +101,6 @@ const routes: Routes = [
     canActivate:[PainterGuardService]
   }
 
-
 ];
 
 @NgModule({

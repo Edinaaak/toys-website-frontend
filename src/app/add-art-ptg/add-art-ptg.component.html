@@ -7,7 +7,7 @@
 </head>
 <body>
   <form [formGroup]="addForm">
-    <h3 style="text-align: center;">Add an art painting</h3>
+    <h3 style="text-align: center;">Add a toy</h3>
     <div class="text-align-center" *ngIf="added">
       <div class="alert alert-success small-alert">You added successfully</div>
     </div>
@@ -25,14 +25,14 @@
     <div class="row mb-4">
       <div class="col">
         <div class="form-outline">
-          <label class="form-label" >Width</label>
-          <input type="text" id="form6Example1" class="form-control"  formControlName="width" />
+          <label class="form-label" >Price</label>
+          <input type="text" id="form6Example1" class="form-control"  formControlName="price" />
         </div>
       </div>
          <div class="col">
         <div class="form-outline">
-          <label class="form-label" >Height</label>
-          <input type="text" id="form6Example2" class="form-control"   formControlName="height" />
+          <label class="form-label" >Description</label>
+          <input type="text" id="form6Example2" class="form-control"   formControlName="description" />
         </div>
       </div>
     </div>
@@ -40,14 +40,12 @@
     <div class="row mb-4">
       <div class="col">
         <div *ngIf="Sirina?.touched && Sirina?.invalid">
-          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.required">The width is required</p>
-          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.pattern">The witdh must be a number</p>
+          <p class="alert alert-danger small-alert" *ngIf="Sirina?.errors?.required">The price is required</p>
         </div>
       </div>
          <div class="col">
           <div *ngIf="Visina?.touched && Visina?.invalid">
-            <p class="alert alert-danger small-alert " *ngIf="Visina?.errors?.required">The height is required</p>
-            <p class="alert alert-danger small-alert" *ngIf="Visina?.errors?.pattern">The witdh must be a number</p>
+            <p class="alert alert-danger small-alert " *ngIf="Visina?.errors?.required">The description is required</p>
           </div>
       </div>
     </div>
@@ -56,14 +54,14 @@
 
     <!-- Text input -->
     <div class="form-outline mb-4">
-      <label  class="form-label">Thematic unit</label>
+      <label  class="form-label">Age</label>
       <select class="form-select form-select-lg" name="" id="selectThematicUnit" (change)="choose()">
-        <option *ngFor="let unit of thUnits" value="{{unit.id}}">{{unit.naziv}}</option>
+        <option *ngFor="let unit of thUnits" value="{{unit.id}}">{{unit.naziv}} months</option>
       </select>
     </div>
 
     <div class="form-outline mb-4">
-      <label  class="form-label">Auditorium</label>
+      <label  class="form-label">By Interest</label>
       <select class="form-select form-select-lg" name="" id="selectAuditorium" (change)="choose()"  >
         <option *ngFor="let item of auditoriums; let i = index" value="{{item.id}}" >{{item.naziv}}</option>
       </select>
@@ -79,7 +77,7 @@
 
 
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4" (click)="add()" [disabled]="addForm.invalid">Create</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4" (click)="add()">Create</button>
   </form>
 
 </body>
