@@ -6,6 +6,9 @@ import { ThematicUnitService } from '../thematic-unit.service';
 import { AuditoriumService } from '../auditorium.service';
 import { CartService } from '../cart.service';
 import { BasketComponent } from '../basket/basket.component';
+import { Observable } from 'rxjs';
+import { selectProductCount } from '../store/reducers/user.reducer';
+
 
 @Component({
   selector: 'app-navigation',
@@ -23,6 +26,7 @@ export class NavigationComponent implements OnInit {
   productsFromCart: any = []
   length: any = 0;
   @ViewChild('cartComponent') cartComponent!: BasketComponent;
+  productCount$ !: Observable<number>;
 
   constructor( loginService: LoginService, private userStorage : Store<{user: User}>, private thematicUnitService: ThematicUnitService, private audithoriumService: AuditoriumService,
     private cartService: CartService, private store: Store<{ products: any }>
@@ -46,23 +50,20 @@ export class NavigationComponent implements OnInit {
     this.audithoriumService.getAllAuditoriums().subscribe(res => {
       this.toysByInterests = res.data;
     });
-
+    this.productCount$ = this.store.select(selectProductCount);
     this.getProductCount();
   }
 
   getProductCount () {
-    console.log("getProductCount",JSON.parse(localStorage.getItem('products') || '[]') )
     this.store.select('products').subscribe((res) => {
-
-      console.log("res",res)
     this.length = res?.products?.length;
-    console.log("length",this.length)
   })
   }
 
 
   openComp() {
     this.cartComponent.isCartOpen = true;
+    this.cartComponent.refetchProducts();
     console.log("open")
   }
   

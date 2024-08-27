@@ -1,0 +1,18 @@
+<div class="comment-card">
+    <div class="header">
+      <h3>{{ comment.title }}</h3>
+      <span class="time-ago">{{ comment.date }}</span>
+    </div>
+    <p class="comment-text">
+      {{ comment.text }}<span class="show-more">...SHOW MORE</span>
+    </p>
+    <div class="footer">
+      <span class="author">{{ comment.user.ime }} {{ comment.user.prezime }}</span>
+      <span class="location">{{ comment.user.nazivMesta }}</span>
+      <div class="product">
+        <img [src]="comment.productImage" alt="Product image" class="product-image" />
+        <span class="product-name">{{ comment.product.naziv }}</span>
+      </div>
+    </div>
+  </div>
+  

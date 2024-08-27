@@ -56,11 +56,6 @@ const routes: Routes = [
     canActivate : [AdminGuardService]
   },
   {
-    path:'jury-list',
-    component:JuryListComponent,
-    canActivate: [AdminGuardService]
-  },
-  {
     path:'control',
     component: ControlComponent,
     canActivate:[AdminGuardService]
@@ -78,7 +73,6 @@ const routes: Routes = [
   {
     path:'jury-list',
     component:JuryListComponent,
-    canActivate: [LoginGuardService]
   },
   {
     path:'control',

@@ -112,6 +112,15 @@
       </div>
     </div>
   </div>
+  <h1 class="text-center bold-2" style="font-weight: bolder; position: relative;">
+    Comments
+    <i class="fa fa-plus-circle add-comment-icon" aria-hidden="true"   (click)="toggleAddCommentForm()"></i>
+  </h1>
+  <app-comment-add-form *ngIf="isAddingComment" [id]="id" (commentAdded)="getComments()"></app-comment-add-form>
+  <div class="comments-container">
+    <app-comment-card *ngFor="let comment of comments" [comment]="comment" ></app-comment-card>
+  </div>
+  
 </div>
 <app-footer></app-footer>
 </body>

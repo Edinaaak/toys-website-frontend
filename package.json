@@ -24,6 +24,7 @@
     "angularx-social-login": "^4.1.0",
     "bootstrap": "^5.0.1",
     "ng-animate": "^2.0.1",
+    "ng-tippy": "^3.2.2",
     "react-redux": "^8.0.7",
     "redux": "^4.2.1",
     "rxjs": "~6.6.0",

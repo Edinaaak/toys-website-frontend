@@ -14,7 +14,7 @@ export class PainterGuardService {
    }
   user : User = {} as User
   canActivate(): boolean {
-    if (this.user?.role == 'Slikar') {
+    if (this.user?.role == 'Admin') {
       // Ako je korisnik administrator, dozvoli pristup ruti
       return true;
     } else {

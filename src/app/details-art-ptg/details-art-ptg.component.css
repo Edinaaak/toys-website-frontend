@@ -155,3 +155,39 @@ form
 .rating-bar-container {
   margin-bottom: 40px;
 }
+
+.comments-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns with equal width */
+  gap: 10px; /* space between the cards */
+  padding: 10px;
+}
+
+@media (max-width: 1200px) {
+  .comments-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .comments-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .comments-container {
+    grid-template-columns: 1fr; /* 1 column for mobile screens */
+  }
+}
+
+app-comment-card {
+  padding: 5px;
+  justify-content: center;
+  display: flex;
+}
+
+
+.add-comment-icon {
+  cursor: pointer;
+}

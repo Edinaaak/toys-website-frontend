@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from './interfaces/User';
-import { logout } from './store/actions/user.actions';
+import { logout, setProducts } from './store/actions/user.actions';
+import { CartService } from './cart.service';
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
   url = "https://localhost:7036/api/Auth/"
-  constructor(private http : HttpClient, private store: Store<{user: User}>) { }
+  constructor(private http : HttpClient, private store: Store<{user: User}>, private productStore: Store<{products: any}>, private cartService: CartService) { }
 
   getCredentials(user :any)
   {
@@ -19,8 +20,11 @@ export class LoginService {
   isLoggedIn()
   {
     let token = localStorage.getItem('user');
-    if(token == null)
+    if(token == null) {
+      this.productStore.dispatch(setProducts({products: []}))
       return false;
+    }
+  
     return true;
 
   }
@@ -28,7 +32,9 @@ export class LoginService {
   logout()
   {
     this.store.dispatch(logout())
+    this.productStore.dispatch(setProducts({products: []}))
     localStorage.removeItem('user');
+    localStorage.removeItem('products');
   }
 
   googleLogin (email : any)

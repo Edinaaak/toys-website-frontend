@@ -4,7 +4,8 @@ import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/User';
 import { Store } from '@ngrx/store';
-import { login } from '../store/actions/user.actions';
+import { login, setProducts } from '../store/actions/user.actions';
+import { CartService } from '../cart.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   errorMsg : any = {}
   userInfo?: any
 
-  constructor(private loginService: LoginService, private router: Router, private store: Store<{user: User}>) {
+  constructor(private loginService: LoginService, private router: Router, private store: Store<{user: User}>,private productStore: Store<{products: any}>, private cartService: CartService) {
 
   }
 
@@ -55,8 +56,13 @@ export class LoginComponent implements OnInit {
         this.credentials = res;
         // localStorage.setItem('token', this.credentials.token);
         localStorage.setItem('user', JSON.stringify(res));
-        const token = this.credentials.token;
-        this.router.navigate([''])
+        
+      this.router.navigate([''])
+          this.cartService.getCartByUser(JSON.parse(res).painter.id).subscribe(res => {
+      this.productStore.dispatch(setProducts({products: res}))
+      localStorage.setItem('products', JSON.stringify(res))
+    })
+       
       },
         (error:any) => {
           if(error.status == 400)

@@ -16,6 +16,7 @@
                                   <h2>{{user.painter?.ime}} {{user.painter?.prezime}}</h2>
                                   <div class="location">{{user.painter?.nazivMesta}}, {{user.painter?.ptt}}</div>
                                   <p><b>Email:</b> {{user.painter?.email}}</p>
+                                  <p><b>Role:</b> {{user.role}}</p>
                                   <button class="me-2" (click)="updateUser(user.painter?.id)">Update profile</button>
                                   <button (click)="deleteUser(user.painter.id)">Delete profile</button>
                               </div>

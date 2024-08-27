@@ -31,7 +31,9 @@ import { GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { BasketComponent } from './basket/basket.component';
-
+import { CommentCardComponent } from './comment-card/comment-card.component';
+import { CommentAddFormComponent } from './comment-add-form/comment-add-form.component';
+import { TippyModule } from 'ng-tippy';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { BasketComponent } from './basket/basket.component';
     ChangePasswordComponent,
     UnauthorizedComponent,
     BlogsComponent,
-    BasketComponent
+    BasketComponent,
+    CommentCardComponent,
+    CommentAddFormComponent
   ],
   imports: [
    BrowserModule,
@@ -67,6 +71,7 @@ import { BasketComponent } from './basket/basket.component';
    OAuthModule.forRoot(),
    SocialLoginModule,
    AppRoutingModule,
+   TippyModule,
    StoreModule.forRoot({
     user: userReducer,
     products: productReducer,
@@ -92,7 +97,8 @@ import { BasketComponent } from './basket/basket.component';
     {path:'unauthorized', component: UnauthorizedComponent},
     {path:'gallery/:kind/:title/:id', component:GalleryComponent},
     {path:'blogs', component: BlogsComponent},
-    {path:'cart', component: BasketComponent}
+    {path:'cart', component: BasketComponent},
+    {path:'add-comment', component: CommentAddFormComponent},
    ]),
   ],
   providers: [{

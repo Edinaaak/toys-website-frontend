@@ -16,3 +16,5 @@ export const addArtsPainting = createAction('[add-arts-painting]', props<{dela :
 export const getProductLength = createAction('[get-product-length]');
 
 export const setProducts = createAction('[set-products]', props<{products: any}>());
+
+export const deleteProduct = createAction('[delete-product]', props<{id: any}>());

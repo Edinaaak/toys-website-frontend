@@ -14,7 +14,7 @@ export class AdminGuardService implements CanActivate{
    }
   user : User = {} as User
   canActivate(): boolean {
-    if (this.user?.role == 'Admin') {
+    if (this.user?.role == 'Moderator') {
       // Ako je korisnik administrator, dozvoli pristup ruti
       return true;
     } else {

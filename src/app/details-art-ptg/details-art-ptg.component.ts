@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { User } from '../interfaces/User';
 import { CartService } from '../cart.service';
 import { setProducts } from '../store/actions/user.actions';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-details-art-ptg',
@@ -15,7 +16,7 @@ import { setProducts } from '../store/actions/user.actions';
 export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
 
   constructor(private artPtg : ArtPaintingService, private routerActive : ActivatedRoute, private audService : AuditoriumService, private router : Router,
-    private userStorage:Store<{user:User}>, private cartService : CartService, private productStore: Store<{product: any}>) {
+    private userStorage:Store<{user:User}>, private cartService : CartService, private productStore: Store<{product: any}>, private commentService: CommentService) {
       this.userStorage.select('user').subscribe(res =>
         {
           this.user = res
@@ -39,6 +40,8 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
   selectedCondition: string = 'excellent';  
   selectedQuantity: number = 1; 
   reviews: any = []
+  isAddingComment = false;
+  comments: any = [];
   ngOnInit(): void {
 
 
@@ -71,10 +74,11 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
         })
 
         this.cartService.getCartByUser(this.user.painter.id).subscribe(res =>{
-          console.log(res, "cart")
           this.productStore.dispatch(setProducts({ products: res }));
           localStorage.setItem('products', JSON.stringify(res));
         })
+
+        this.getComments();
 
     }
 
@@ -99,8 +103,9 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
               },
               error=>
               {
-                this.error = error.error
-                this.alreadyRate = true
+                this.error = error.error;
+                this.alreadyRate = true;
+                alert('You already rate this art painting')
               })
             console.log(this.rate)
            stars.forEach((star, index2) =>
@@ -215,5 +220,17 @@ export class DetailsArtPtgComponent implements OnInit, AfterViewInit {
       });
     }
 
+  
+
+    toggleAddCommentForm() {
+      this.isAddingComment = !this.isAddingComment;
+    }
+
+    getComments() {
+      this.commentService.getComments(this.id).subscribe((res) => {
+        console.log(res);
+        this.comments = res;
+      });
+    }
 
 }

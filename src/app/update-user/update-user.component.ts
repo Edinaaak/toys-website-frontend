@@ -78,7 +78,7 @@ export class UpdateUserComponent implements OnInit {
         this.added = true
         console.log("update-ovano", res)
         this.userStorage.dispatch(updateUser({painter:res}))
-        localStorage.setItem('user', JSON.stringify(this.user))
+        localStorage.setItem('user', JSON.stringify(user))
       },
       error=>
       {
