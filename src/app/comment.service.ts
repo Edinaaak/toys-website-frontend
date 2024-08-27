@@ -18,4 +18,8 @@ export class CommentService {
   getComments(id:any) {
     return this.http.get<any>(`${this.url}/Comment/allComments/${id}`);
   }
+
+  deleteComment(id: number) {
+    return this.http.delete<any>(`${this.url}/Comment/${id}`);
+  }
 }

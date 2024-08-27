@@ -56,11 +56,11 @@ export class LoginComponent implements OnInit {
         this.credentials = res;
         // localStorage.setItem('token', this.credentials.token);
         localStorage.setItem('user', JSON.stringify(res));
-        
+        this.cartService.getCartByUser(res.painter.id).subscribe(res => {
+          this.productStore.dispatch(setProducts({products: res}))
+          localStorage.setItem('products', JSON.stringify(res))
+          console.log(res)
       this.router.navigate([''])
-          this.cartService.getCartByUser(JSON.parse(res).painter.id).subscribe(res => {
-      this.productStore.dispatch(setProducts({products: res}))
-      localStorage.setItem('products', JSON.stringify(res))
     })
        
       },

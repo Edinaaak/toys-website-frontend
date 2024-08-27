@@ -8,6 +8,7 @@ import { CartService } from '../cart.service';
 import { BasketComponent } from '../basket/basket.component';
 import { Observable } from 'rxjs';
 import { selectProductCount } from '../store/reducers/user.reducer';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,11 +26,12 @@ export class NavigationComponent implements OnInit {
   prices = [15,25, 40];
   productsFromCart: any = []
   length: any = 0;
+  searchValue: any = '';
   @ViewChild('cartComponent') cartComponent!: BasketComponent;
   productCount$ !: Observable<number>;
 
   constructor( loginService: LoginService, private userStorage : Store<{user: User}>, private thematicUnitService: ThematicUnitService, private audithoriumService: AuditoriumService,
-    private cartService: CartService, private store: Store<{ products: any }>
+    private cartService: CartService, private store: Store<{ products: any }>, private router: Router
   ) {
     this.loginService = loginService
     this.userStorage.select('user').subscribe((res) => {
@@ -56,6 +58,8 @@ export class NavigationComponent implements OnInit {
 
   getProductCount () {
     this.store.select('products').subscribe((res) => {
+      this.productCount$ = this.store.select(selectProductCount);
+      console.log(this.productCount$)
     this.length = res?.products?.length;
   })
   }
@@ -67,5 +71,11 @@ export class NavigationComponent implements OnInit {
     console.log("open")
   }
   
+  searchProduct() {
+    console.log(this.searchValue)
+    this.isSearchVisible = false;
+    this.router.navigate(['/gallery'], { queryParams: { search: this.searchValue } });
+  
+  }
 
 }

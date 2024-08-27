@@ -19,9 +19,10 @@ export class GalleryComponent implements OnInit {
   currPageNumber : any = 1;
   ageBasedToys : any = 'For All'
   price: any = 0;
-
+  originalGalleryImages: any[] = [];
   ngOnInit(): void {
    
+
     this.activatedRoute.params.subscribe(params => {
 
       this.idAuditorium = null;
@@ -45,9 +46,25 @@ export class GalleryComponent implements OnInit {
       }
       else {
        
+
         this.filterByAuditorium();
+        this.originalGalleryImages = [...this.galleryImages];
+        
       }
     });
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      const filter = params['search'] ? params['search'].toLowerCase() : ''; 
+      
+      if (filter) { 
+        this.galleryImages =  this.originalGalleryImages.filter((x: any) => 
+          x.naziv.toLowerCase().includes(filter));
+      } else {
+        console.log("No search query provided");
+        this.filterByAuditorium()
+      }
+    });
+    
       this.auditoriumService.getAllThematicUnit()
       .subscribe((res: any[])=>
         {
@@ -88,6 +105,7 @@ export class GalleryComponent implements OnInit {
       this.artPtgService.getArtPtgByFilter(params)
       .subscribe((res: any)=>
         {
+          this.originalGalleryImages = res;
           this.galleryImages = res;
 
         },

@@ -2,16 +2,17 @@
     <div class="header">
       <h3>{{ comment.title }}</h3>
       <span class="time-ago">{{ comment.date }}</span>
+      <ng-container *ngIf="user.role[0] == 'Moderator'">
+      <i class="fa-solid fa-trash" style="cursor:pointer" (click)="deleteComment(comment.id)"></i>
+      </ng-container>
     </div>
     <p class="comment-text">
-      {{ comment.text }}<span class="show-more">...SHOW MORE</span>
+      {{ comment.text }}
     </p>
     <div class="footer">
       <span class="author">{{ comment.user.ime }} {{ comment.user.prezime }}</span>
-      <span class="location">{{ comment.user.nazivMesta }}</span>
       <div class="product">
-        <img [src]="comment.productImage" alt="Product image" class="product-image" />
-        <span class="product-name">{{ comment.product.naziv }}</span>
+        <span class="product-name" >{{ comment.product.naziv }}</span>
       </div>
     </div>
   </div>

@@ -118,7 +118,7 @@
   </h1>
   <app-comment-add-form *ngIf="isAddingComment" [id]="id" (commentAdded)="getComments()"></app-comment-add-form>
   <div class="comments-container">
-    <app-comment-card *ngFor="let comment of comments" [comment]="comment" ></app-comment-card>
+    <app-comment-card *ngFor="let comment of comments" [comment]="comment" (commentDeleted)="getComments()" ></app-comment-card>
   </div>
   
 </div>

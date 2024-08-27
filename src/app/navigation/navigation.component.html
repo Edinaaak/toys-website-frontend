@@ -1,9 +1,9 @@
 <body>
     <div class="container bg-white p-4" *ngIf="isSearchVisible">
       <form class="navbar-search" id="searchForm" role="search" style="display: flex;justify-content:center; width: 100%;">
-        <input type="search" placeholder="Search" aria-label="Search">
-        <button type="submit">Search</button>
-        <button class="navbar-search-icon" id="searchIcon" (click)="toggleSearch()">
+        <input type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchValue" name="search">
+        <button type="submit"  (click)="searchProduct()" >Search</button>
+        <button class="navbar-search-icon" id="searchIcon" (click)="toggleSearch()" >
           <i class="bi bi-x"></i> <!-- Koristite odgovarajuću ikonicu -->
         </button>
       </form>
@@ -25,11 +25,11 @@
     <a class="navbar-login" [routerLink]="['login']" (click)="loginService.logout()" *ngIf="loginService.isLoggedIn()">
       <i class="bi bi-person-x" style="font-size: 24px;"></i> <!-- Person with a cross icon -->
     </a>
-    <a class="navbar-cart"  (click)="openComp()" style="position: relative; cursor: pointer;">
+    <a class="navbar-cart"  (click)="openComp()" style="position: relative; cursor: pointer;" *ngIf="loginService.isLoggedIn()">
       <i class="bi bi-cart" style="font-size: 22px; margin-left: 10px;"></i> <!-- Korpa ikonica -->
       <span  *ngIf="length > 0" class="badge rounded-pill" 
             style="position: absolute; top: 0; right: -10px; background-color: orange;">
-            {{ productCount$ | async }}
+            {{ length }}
       </span>
     </a>
     <app-basket #cartComponent></app-basket>
@@ -39,7 +39,7 @@
 </nav>
 
   <nav class="navbar navbar-expand" id="custom-navbar" *ngIf="!isSearchVisible">
-    <div class="container">
+    <div class="container" *ngIf="loginService.isLoggedIn()">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">

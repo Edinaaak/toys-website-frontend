@@ -14,12 +14,16 @@ export class BasketComponent  implements OnInit {
 
   isCartOpen = false ;
   productsFromCart: any[] = [];
+  user: User = {} as User;
 
   constructor(private cartService : CartService, private store: Store<{user: User}>, private productStore: Store<{products:any}>) {}
 
   ngOnInit(): void {
     // Fetch cart items from the server
     this.getProducts();
+    this.store.select('user').subscribe((res) => {
+      this.user = res;
+    });
   }
   toggleCart() {
     console.log(this.isCartOpen);
@@ -88,5 +92,14 @@ export class BasketComponent  implements OnInit {
       });
     } );}
   
+    checkout() {
+      this.cartService.deleteProductsFromCart(this.user.painter.id).subscribe(res => {
+        console.log(res);
+        this.productsFromCart = [];
+        localStorage.setItem('products', JSON.stringify(this.productsFromCart));
+        alert('You have successfully purchased the items');
+        this.getProducts();
+      });
+    }
 
 }

@@ -26,4 +26,8 @@ export class CartService {
   updateProductInCart(data: any) {
     return this.http.put<any>(`${this.url}/Korpa`, data);
   }
+
+  deleteProductsFromCart(id: number) {
+    return this.http.delete<any>(`${this.url}/Korpa/deleteFromCart/${id}`);
+  }
 }
